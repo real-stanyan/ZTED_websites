@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function NewsCard() {
   return (
-    <div className="flex flex-col justify-evenly text-black w-[70vw] h-[100px] md:h-[300px] border-b-2 border-black/10 rounded overflow-hidden">
+    <div className="flex flex-col justify-evenly text-black w-[70vw] h-[100px] md:h-[400px] border-b-2 border-black/10 rounded overflow-hidden">
       <h1 className="p-1 text-[2vw]">新闻标题</h1>
       <div className="flex items-center">
         <Image
