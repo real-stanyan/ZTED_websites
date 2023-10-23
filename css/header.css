@@ -1,3 +1,6 @@
 .header {
-  background-image: url("../public/images/header_bg.jpg");
+  background-image: url(../images/header.jpg);
+}
+.header .active {
+  background-color: linear-gradient(45deg, red, yellow, green, cyan, blue, magenta);
 }

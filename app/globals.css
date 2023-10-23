@@ -25,3 +25,23 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* 定义滚动条的宽度 */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* 定义滚动条轨道的样式 */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* 定义滚动条的样式 */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* 定义滚动条的悬停状态 */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
