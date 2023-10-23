@@ -1,22 +1,12 @@
 "use client";
 
-import SimpleSlider from "@/components/swiper";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-
-import Header from "@/components/header";
+import News from "@/components/news";
 import Footer from "@/components/footer";
 
 export default function Home() {
   return (
-    <main className="bg-main-bg bg-cover min-w-full min-h-[350vh] relative">
-      <Header />
-      <div>{/* <SimpleSlider /> */}</div>
+    <main className="flex flex-col py-10 items-center bg-main-bg bg-cover min-w-full min-h-[350vh] relative">
+      <News />
       <Footer />
     </main>
   );
