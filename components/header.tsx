@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 import { RiSearchLine } from "react-icons/ri";
@@ -9,10 +9,140 @@ import { HiMenu } from "react-icons/hi";
 export default function Header() {
   const [MobileNav, setMobileNav] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      // 获取视口高度的50%
+      const triggerHeight = window.innerHeight * 0.2;
+
+      if (window.scrollY >= triggerHeight) {
+        console.log("User scrolled more than 50vh!");
+        setMobileNav(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // 当组件卸载时移除事件监听器
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
+      <div
+        className={`py-[5vw] fixed flex flex-col items-center md:hidden left-0 w-screen h-[50vh] bg-nav-bg bg-cover z-[0] ${
+          MobileNav ? "top-0" : "-top-[50vh]"
+        } transition-all duration-500 ease-in-out z-20 rounded`}
+      >
+        <input
+          type="text"
+          className="w-[80vw] h-[7vw] px-4 rounded bg-transparent border-white border font-sans focus:outline-none"
+        />
+        <ul className="px-3 w-full flex flex-wrap text-center leading-[70px]">
+          <li className="w-[50%] h-[40px] text-[5vw] invert">
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg ">
+              首
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              页
+            </span>
+          </li>
+          <li className="w-[50%] h-[40px] text-[5vw]">
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              关
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              于
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              我
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              们
+            </span>
+          </li>
+          <li className="w-[50%] h-[40px] text-[5vw]">
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              河
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              南
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              文
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              化
+            </span>
+          </li>
+          <li className="w-[50%] h-[40px] text-[5vw]">
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              课
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              程
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              介
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              绍
+            </span>
+          </li>
+          <li className="w-[50%] h-[40px] text-[5vw]">
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              新
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              闻
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              与
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              活
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              动
+            </span>
+          </li>
+          <li className="w-[50%] h-[40px] text-[5vw]">
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              课
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              程
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              报
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              名
+            </span>
+          </li>
+          <li className="w-[50%] h-[40px] text-[5vw]">
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              联
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              系
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              我
+            </span>
+            <span className="p-2 bg-moblie-nav-bg bg-cover drop-shadow-lg">
+              们
+            </span>
+          </li>
+        </ul>
+      </div>
       {/* header */}
-      <div className="relative w-full h-[10vw] md:h-[4vw] px-2 flex justify-between bg-header-bg bg-cover truncate z-[10]">
+      <div
+        className={`w-full ${
+          MobileNav ? "h-[60vw] bg-nav-bg" : "h-[10vw]"
+        } md:h-[4vw] px-2 flex justify-between bg-header-bg bg-cover truncate transition-all duration-500 ease-in-out`}
+      >
         <div className="flex items-center">
           <Image
             src={"/images/zted_icon.png"}
@@ -52,21 +182,6 @@ export default function Header() {
         <div className="cursor-pointer text-[1.2vw]">新闻与活动</div>
         <div className="cursor-pointer text-[1.2vw]">课程报名</div>
         <div className="cursor-pointer text-[1.2vw]">联系我们</div>
-      </div>
-      <div
-        className={`flex md:hidden absolute w-screen h-[50vh] bg-nav-bg bg-cover z-[0] ${
-          MobileNav ? "top-0" : "-top-[50vh]"
-        } transition-all duration-500 ease-in-out`}
-      >
-        <ul className="mt-[10vw] px-3 w-full flex flex-col justify-evenly">
-          <li>首页</li>
-          <li>关于我们</li>
-          <li>河南文化</li>
-          <li>课程介绍</li>
-          <li>新闻与活动</li>
-          <li>课程报名</li>
-          <li>联系我们</li>
-        </ul>
       </div>
     </>
   );

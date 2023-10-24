@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
+        "moblie-nav-bg": "url(/images/moblie_nav_bg.png)",
         "header-bg": "url(/images/header_bg.jpg)",
         "nav-bg": "url(/images/nav_bg.jpg)",
         "main-bg": "url(/images/main_bg.jpg)",
