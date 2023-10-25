@@ -17,6 +17,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      keyframes: {
+        swiper: {
+          "0%": { left: "0vw" },
+          "100%": { left: "200vw" },
+        },
+      },
+      animation: {
+        swiper: "swiper 20s ease-in-out infinite alternate", // 2s duration and ease-in-out timing function as an example
+      },
     },
   },
   plugins: [],

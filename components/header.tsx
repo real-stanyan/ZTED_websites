@@ -190,7 +190,10 @@ export default function Header() {
         <Link href="/aboutus">
           <div className="cursor-pointer text-[1.2vw]">关于我们</div>
         </Link>
-        <div className="cursor-pointer text-[1.2vw]">课程介绍</div>
+        <Link href="/courseintro">
+          <div className="cursor-pointer text-[1.2vw]">课程介绍</div>
+        </Link>
+
         <div className="cursor-pointer text-[1.2vw]">新闻与活动</div>
         <div className="cursor-pointer text-[1.2vw]">课程报名</div>
         <div className="cursor-pointer text-[1.2vw]">联系我们</div>

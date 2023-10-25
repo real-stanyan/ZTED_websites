@@ -6,6 +6,7 @@ import "@/css/common.css";
 const inter = Inter({ subsets: ["latin"] });
 
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "海南志途教育科技有限公司",
@@ -18,10 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="overflow-x-hidden">
+      <body
+        className={`bg-main-bg bg-contain bg-[#f7f7e9] bg-no-repeat bg-bottom`}
+      >
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
