@@ -1,12 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Image from "next/image";
 
 import { RiSearchLine } from "react-icons/ri";
 import { HiMenu } from "react-icons/hi";
 
 export default function Header() {
+  const router = useRouter();
   const [MobileNav, setMobileNav] = useState(false);
 
   useEffect(() => {
@@ -143,7 +146,12 @@ export default function Header() {
           MobileNav ? "h-[60vw] bg-nav-bg" : "h-[10vw]"
         } md:h-[4vw] px-2 flex justify-between bg-header-bg bg-cover truncate transition-all duration-500 ease-in-out`}
       >
-        <div className="flex items-center">
+        <div
+          className="flex items-center cursor-pointer"
+          onClick={() => {
+            router.push("/");
+          }}
+        >
           <Image
             src={"/images/zted_icon.png"}
             alt="ZTED ICON"
@@ -155,6 +163,7 @@ export default function Header() {
             海南志途教育科技有限公司
           </h1>
         </div>
+
         {/* search bar */}
         <div className="relative hidden md:flex items-center">
           <RiSearchLine color="black" className="absolute left-2" />
@@ -175,9 +184,12 @@ export default function Header() {
       </div>
       {/* nav bar */}
       <div className="hidden md:flex justify-between items-center px-[20vw] h-[3vw] bg-nav-bg bg-cover">
-        <div className="cursor-pointer text-[1.2vw]">首页</div>
-        <div className="cursor-pointer text-[1.2vw]">关于我们</div>
-        <div className="cursor-pointer text-[1.2vw]">河南文化</div>
+        <Link href="/">
+          <div className="cursor-pointer text-[1.2vw]">首页</div>
+        </Link>
+        <Link href="/aboutus">
+          <div className="cursor-pointer text-[1.2vw]">关于我们</div>
+        </Link>
         <div className="cursor-pointer text-[1.2vw]">课程介绍</div>
         <div className="cursor-pointer text-[1.2vw]">新闻与活动</div>
         <div className="cursor-pointer text-[1.2vw]">课程报名</div>
