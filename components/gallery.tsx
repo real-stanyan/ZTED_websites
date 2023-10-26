@@ -1,28 +1,3 @@
-// import Image from "next/image";
-
-// import SwiperImageList from "@/data/swiper_image_list.json";
-
-// export default function Swiper() {
-//   const renderSwiperSlides = () => {
-//     return SwiperImageList.map((item, index) => (
-//       <Image
-//         src={`/images/swiper/${item}`}
-//         key={index}
-//         alt={item}
-//         width={200}
-//         height={200}
-//         className="w-[15vw]"
-//       />
-//     ));
-//   };
-
-//   return (
-//     <div className="h-[40vw] w-[200vw] flex flex-wrap justify-center my-[4vw] rounded relative top-0 left-[10vw] animate-swiper">
-//       {renderSwiperSlides()}
-//     </div>
-//   );
-// }
-import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -52,8 +27,9 @@ export default function Gallery() {
         }}
         pagination={{
           clickable: true,
+          type: window.innerWidth <= 768 ? "fraction" : "bullets",
         }}
-        navigation={true}
+        navigation={false}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >

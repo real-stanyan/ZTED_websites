@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <div className="flex flex-col items-center relative bottom-20 w-screen">
+    <div className="flex flex-col my-[10vw] items-center w-screen">
       <Image
         src={"/images/footer_qr_code.jpg"}
         alt="QR Code"

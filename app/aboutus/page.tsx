@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Culture() {
   return (
     <>
-      <div className="px-[6vw] py-[3vw] min-w-full min-h-[350vh] text-black">
+      <div className="px-[6vw] py-[3vw] min-w-full h-auto text-black">
         {/* 河南地理位置 */}
         <div className="mb-[2vw]">
           <h1 className="text-[2.5vw]">河南地理位置</h1>
