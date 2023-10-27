@@ -19,46 +19,75 @@ export default function Enroll() {
     setUserinfo({ ...userinfo, [name]: value });
   };
 
-  const handleSubmit = () => {
-    console.log(JSON.stringify(userinfo));
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch("/api/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userinfo),
+      });
+
+      if (response.status === 200) {
+        alert("提交成功");
+        setUserinfo({
+          name: "",
+          phone: "",
+          company: "",
+          occupation: "",
+          incomes: "",
+          learning_experience: "",
+        });
+      } else {
+        alert("提交失败");
+      }
+
+      // return data;
+    } catch (error) {
+      console.error("Error creating user:", error);
+    }
   };
 
-  console.log(userinfo);
   return (
     <>
       <div className="flex flex-col justify-evenly w-[60%] h-[45vw] mx-auto items-center font-sans text-black">
         {/* 姓名 */}
         <input
+          value={userinfo.name}
           type="text"
           name="name"
           className="w-[100%] h-[50px] bg-transparent border-2 border-black/10 placeholder:text-black rounded-lg p-2"
           placeholder="姓名"
-          onBlur={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             handleInputChange(e)
           }
         />
         {/* 手机号码 */}
         <input
+          value={userinfo.phone}
           type="text"
           name="phone"
           className="w-[100%] h-[50px] bg-transparent border-2 border-black/10 placeholder:text-black rounded-lg p-2"
           placeholder="手机号码"
-          onBlur={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             handleInputChange(e)
           }
         />
         {/* 企业名称 */}
         <input
+          value={userinfo.company}
           type="text"
           name="company"
           className="w-[100%] h-[50px] bg-transparent border-2 border-black/10 placeholder:text-black rounded-lg p-2"
           placeholder="企业名称"
-          onBlur={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             handleInputChange(e)
           }
         />
         {/* 您的职位 */}
         <select
+          value={userinfo.occupation}
           name="occupation"
           id="occupation"
           className="w-[100%] h-[50px] bg-transparent border-2 border-black/10 rounded-lg p-2"
@@ -71,17 +100,13 @@ export default function Enroll() {
         </select>
         {/* 公司年营收 */}
         <select
+          value={userinfo.incomes}
           name="incomes"
           id="incomes"
           className="w-[100%] h-[50px] bg-transparent border-2 border-black/10 rounded-lg p-2"
           onChange={handleInputChange}
         >
-          <option
-            value=""
-            className="w-[100%] h-[50px] bg-transparent border-2 border-black/10 rounded-lg p-2"
-          >
-            公司年营收
-          </option>
+          <option value="">公司年营收</option>
           <option value="小于 500,000">小于 500,000</option>
           <option value="50,000 - 10,000">50,000 - 100,000</option>
           <option value="100,000 - 500,000">100,000 - 500,000</option>
@@ -90,6 +115,7 @@ export default function Enroll() {
         </select>
         {/* 你希望得到什的收获 */}
         <select
+          value={userinfo.learning_experience}
           name="learning_experience"
           id="learning_experience"
           className="w-[100%] h-[50px] bg-transparent border-2 border-black/10 rounded-lg p-2"

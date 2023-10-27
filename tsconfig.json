@@ -27,7 +27,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "utils/image_exporter.js"
+    "utils/image_exporter.js",
+    "lib/dbConnect.js",
+    "app/api/user/route.js"
   ],
   "exclude": ["node_modules"]
 }
