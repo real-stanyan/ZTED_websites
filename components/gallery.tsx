@@ -27,7 +27,10 @@ export default function Gallery() {
         }}
         pagination={{
           clickable: true,
-          type: window.innerWidth <= 768 ? "fraction" : "bullets",
+          type:
+            typeof window !== "undefined" && window.innerWidth <= 768
+              ? "fraction"
+              : "bullets",
         }}
         navigation={false}
         modules={[Autoplay, Pagination, Navigation]}
