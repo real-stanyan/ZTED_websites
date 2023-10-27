@@ -6,3 +6,8 @@ type UserInfo = {
   incomes: string;
   learning_experience: string;
 };
+
+type CourseInfo = {
+  title: string;
+  items: string[];
+};

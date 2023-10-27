@@ -19,6 +19,10 @@ export default function Enroll() {
     setUserinfo({ ...userinfo, [name]: value });
   };
 
+  const handleSubmit = () => {
+    console.log(JSON.stringify(userinfo));
+  };
+
   console.log(userinfo);
   return (
     <>
@@ -95,7 +99,12 @@ export default function Enroll() {
           <option value="A">A</option>
           <option value="B">B</option>
         </select>
-        <div>提交报名，等待回电</div>
+        <div
+          className="w-[40vw] h-[20px] leading-[20px] md:h-[50px] md:leading-[50px] my-5 text-center text-[1.5vw] bg-white/50 hover:bg-white text-black rounded cursor-pointer"
+          onClick={handleSubmit}
+        >
+          提交报名，等待回电
+        </div>
       </div>
     </>
   );

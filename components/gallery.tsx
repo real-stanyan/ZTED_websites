@@ -34,7 +34,6 @@ export default function Gallery() {
         }}
         navigation={false}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
       >
         {SwiperImageList.map((item, index) => {
           return (

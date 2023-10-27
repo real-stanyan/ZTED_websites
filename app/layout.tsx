@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="overflow-x-hidden">
+    <html lang="zh" className="overflow-x-hidden">
       <body
         className={`min-w-screen bg-main-bg bg-auto bg-[#f7f7e9] bg-no-repeat bg-bottom`}
       >
