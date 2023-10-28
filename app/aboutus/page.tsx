@@ -1,14 +1,138 @@
+"use client";
+
 import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
 
 export default function Culture() {
+  const [shown, setShown] = useState("");
+
+  const geoRef = useRef<HTMLDivElement>(null);
+  const historyRef = useRef<HTMLDivElement>(null);
+  const spotRef = useRef<HTMLDivElement>(null);
+  const hometownRef = useRef<HTMLDivElement>(null);
+  const hometown2Ref = useRef<HTMLDivElement>(null);
+  const zhiyongRef = useRef<HTMLDivElement>(null);
+  const houdaoRef = useRef<HTMLDivElement>(null);
+  const fendouRef = useRef<HTMLDivElement>(null);
+  const hongseRef = useRef<HTMLDivElement>(null);
+  const dameiRef = useRef<HTMLDivElement>(null);
+  const chucaiRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (geoRef.current) {
+        const rect = geoRef.current.getBoundingClientRect();
+        const distanceFromTopOfViewport = rect.top;
+        // console.log(distanceFromTopOfViewport);
+        if (distanceFromTopOfViewport < 50) {
+          setShown(geoRef.current.title);
+        }
+      }
+      if (historyRef.current) {
+        const rect = historyRef.current.getBoundingClientRect();
+        const distanceFromTopOfViewport = rect.top;
+        // console.log(distanceFromTopOfViewport);
+        if (distanceFromTopOfViewport < 50) {
+          setShown(historyRef.current.title);
+        }
+      }
+      if (spotRef.current) {
+        const rect = spotRef.current.getBoundingClientRect();
+        const distanceFromTopOfViewport = rect.top;
+        // console.log(distanceFromTopOfViewport);
+        if (distanceFromTopOfViewport < 50) {
+          setShown(spotRef.current.title);
+        }
+      }
+      if (hometownRef.current) {
+        const rect = hometownRef.current.getBoundingClientRect();
+        const distanceFromTopOfViewport = rect.top;
+        // console.log(distanceFromTopOfViewport);
+        if (distanceFromTopOfViewport < 50) {
+          setShown(hometownRef.current.title);
+        }
+      }
+      if (hometown2Ref.current) {
+        const rect = hometown2Ref.current.getBoundingClientRect();
+        const distanceFromTopOfViewport = rect.top;
+        // console.log(distanceFromTopOfViewport);
+        if (distanceFromTopOfViewport < 50) {
+          setShown(hometown2Ref.current.title);
+        }
+      }
+      if (zhiyongRef.current) {
+        const rect = zhiyongRef.current.getBoundingClientRect();
+        const distanceFromTopOfViewport = rect.top;
+        // console.log(distanceFromTopOfViewport);
+        if (distanceFromTopOfViewport < 50) {
+          setShown(zhiyongRef.current.title);
+        }
+      }
+      if (houdaoRef.current) {
+        const rect = houdaoRef.current.getBoundingClientRect();
+        const distanceFromTopOfViewport = rect.top;
+        // console.log(distanceFromTopOfViewport);
+        if (distanceFromTopOfViewport < 50) {
+          setShown(houdaoRef.current.title);
+        }
+      }
+      if (fendouRef.current) {
+        const rect = fendouRef.current.getBoundingClientRect();
+        const distanceFromTopOfViewport = rect.top;
+        // console.log(distanceFromTopOfViewport);
+        if (distanceFromTopOfViewport < 50) {
+          setShown(fendouRef.current.title);
+        }
+      }
+      if (hongseRef.current) {
+        const rect = hongseRef.current.getBoundingClientRect();
+        const distanceFromTopOfViewport = rect.top;
+        // console.log(distanceFromTopOfViewport);
+        if (distanceFromTopOfViewport < 50) {
+          setShown(hongseRef.current.title);
+        }
+      }
+      if (dameiRef.current) {
+        const rect = dameiRef.current.getBoundingClientRect();
+        const distanceFromTopOfViewport = rect.top;
+        // console.log(distanceFromTopOfViewport);
+        if (distanceFromTopOfViewport < 50) {
+          setShown(dameiRef.current.title);
+        }
+      }
+      if (chucaiRef.current) {
+        const rect = chucaiRef.current.getBoundingClientRect();
+        const distanceFromTopOfViewport = rect.top;
+        // console.log(distanceFromTopOfViewport);
+        if (distanceFromTopOfViewport < 50) {
+          setShown(chucaiRef.current.title);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // 清除监听器，避免内存泄漏
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <div className="px-[6vw] py-[3vw] min-w-full h-auto text-black">
+      <div className="min-w-full text-black bg-aboutus-title bg-no-repeat bg-fixed bg-left bg-[length:300px_600px]">
+        <div className="fixed text-[1vw] text-white left-[10px] top-[45vh] transition duration-500 ease-in">
+          {shown}
+        </div>
         {/* 河南地理位置 */}
-        <div className="mb-[2vw]">
-          <h1 className="text-[2.5vw]">河南地理位置</h1>
+        <div
+          className="h-[90vh] pl-[300px] overflow-hidden"
+          ref={geoRef}
+          title="河南地理位置"
+        >
           <p className="text-[1vw]">
-            河南处于黄河中下游，居于中国中东部。河南之得名与黄河有莫大的关系。河南的绝大部分地区在黄河以南，故而有“河南”之名。远古时代，河南气候湿润，河流纵横，森林密布，草木茂盛，各类野生动物众多，尤其是大象，这已经为考古发现所证实。野象众多导致了象形文字“豫”的产生。“豫”的意思即为人牵象之地。因此，河南简称“豫”。大禹治水时，把天下分为冀、兖、青、徐、扬、荆、豫、梁、雍等九州，河南为豫州。
+            河南处于黄河中下游，居于中国中东部。河南之得名与黄河有莫大的关系...
+            // 余下的内容...
           </p>
           <Image
             src="/images/aboutus/1.png"
@@ -18,11 +142,16 @@ export default function Culture() {
             className="h-[auto] w-[30vw] mx-auto my-0"
           />
           <p className="text-[1vw]">
-            从地理位置上看，豫州居于九州的中心地带，所以河南又被称为“中州”、“中原”。长期以来，河南一直是中国政治经济文化的中心，对华夏文化的形成和发展做出了重要的贡献。这当中，就包括目前在国内外影响越来越大的豫商精神。
+            从地理位置上看，豫州居于九州的中心地带，所以河南又被称为“中州”... //
+            余下的内容...
           </p>
         </div>
         {/* 河南历史渊源 */}
-        <div className="mb-[2vw]">
+        <div
+          className="pl-[300px] overflow-hidden"
+          ref={historyRef}
+          title="河南历史渊源"
+        >
           <h1 className="text-[2.5vw]">河南历史渊源</h1>
           <p className="text-[1vw]">
             河南是中华民族和华夏文明的重要发祥地。中华民族的人文始祖黄帝诞生在今河南新郑，中华文明的起源、文字的发明、城市的形成和统一国家的建立，都与河南有着密不可分的关系。在5000年中华文明史中，河南作为国家的政治、经济、文化中心长达3000多年，先后有20多个朝代在此建都、200多个皇帝在此执政。中国八大古都河南就有4个，即九朝古都洛阳、七朝古都开封、殷商古都安阳、商都郑州。中国古代四大发明均源自河南。文物古迹众多，有记载着祖先在中原大地繁衍生息的裴李岗文化遗址、仰韶文化遗址、龙山文化遗址；有“人祖”伏羲太昊陵、黄帝故里和轩辕丘；有最古老的天文台周公测景台；有历史上最早的关隘函谷关、最早的佛教寺院白马寺；有“天下第一名刹”嵩山少林寺和闻名中外的大相国寺，等等。洛阳、开封、商丘、安阳、南阳、郑州、浚县、濮阳是全国历史文化名城。
@@ -40,7 +169,11 @@ export default function Culture() {
           </p>
         </div>
         {/* 河南山水胜景 */}
-        <div className="mb-[2vw]">
+        <div
+          className="pl-[300px] overflow-hidden"
+          ref={spotRef}
+          title="河南山水胜景"
+        >
           <h1 className="text-[2.5vw]">河南山水胜景</h1>
           <p className="text-[1vw]">
             河南既是历史文化资源大省，也是自然景观荟萃之地，犹如一座浩瀚如烟的历史长廊、一幅风光旖旎的天然画卷，山川融南秀北雄于一体。全省共有云台山、嵩山、王屋山—黛眉山、伏牛山等世界地质公园4个，黄河、嵖岈山等国家地质公园15个，永城芒砀山等省级地质公园17个，南阳独山玉、新乡凤凰山、焦作缝山国家矿山公园3个，南阳恐龙蛋化石群等国家级自然保护区13个。
@@ -57,7 +190,11 @@ export default function Culture() {
           </p>
         </div>
         {/* 为什么河南会被视为中国人的老家 */}
-        <div className="mb-[2vw]">
+        <div
+          className="pl-[300px] overflow-hidden"
+          ref={hometownRef}
+          title="为什么河南会被视为中国人的老家"
+        >
           <h1 className="text-[2.5vw]">为什么河南会被视为中国人的老家?</h1>
           <p className="text-[1vw]">
             这是一个文化上的概念。因为，河南是中国古代文明的发祥地之一，是华夏、中国、中华、中原、神州等名词的来源。正是上古时代聚居在河南及其周边地区的中国人，点燃了中国文明的火焰，开创了中国文化的先河，从文化文明这个角度，他们的确是中华民族的先祖。
@@ -110,7 +247,11 @@ export default function Culture() {
           </p>
         </div>
         {/* 老家河南 华夏儿女的心灵故乡 */}
-        <div className="mb-[2vw]">
+        <div
+          className="pl-[300px] overflow-hidden"
+          ref={hometown2Ref}
+          title="老家河南 华夏儿女的心灵故乡"
+        >
           <h1 className="text-[2.5vw]">老家河南 华夏儿女的心灵故乡</h1>
           <p className="text-[1vw]">
             河南的“中”，是我国历史缘起之“中”，是地理方位之“中”，是恰到好处之“中”，是和而不同之“中”，是肯定赞赏之“中”，是语言习惯之“中”，是性格气质之“中”，是干事创业之“中”，是追求美好、创造幸福之“中”。
@@ -140,7 +281,11 @@ export default function Culture() {
           </p>
         </div>
         {/* 忠勇河南 民族大义的担当奉献 */}
-        <div className="mb-[2vw]">
+        <div
+          className="pl-[300px] overflow-hidden"
+          ref={zhiyongRef}
+          title="忠勇河南 民族大义的担当奉献"
+        >
           <h1 className="text-[2.5vw]">忠勇河南 民族大义的担当奉献</h1>
           <p className="text-[1vw]">
             河南在民族大义面前从未缺席。从古至今，在外敌入侵、民族存亡和人民群众生命财产安全处于危难时刻，总有河南人挺身而出、舍生取义，留下了许多可歌可泣的历史壮举。
@@ -185,7 +330,11 @@ export default function Culture() {
           />
         </div>
         {/* 厚道河南 绵延亘久的性格密码 */}
-        <div className="mb-[2vw]">
+        <div
+          className="pl-[300px] overflow-hidden"
+          ref={houdaoRef}
+          title="厚道河南 绵延亘久的性格密码"
+        >
           <h1 className="text-[2.5vw]">厚道河南 绵延亘久的性格密码</h1>
           <p className="text-[1vw]">
             河南自古土地肥沃、农业发达。“凿井而饮，耕田而食”和“一分耕耘、一分收获”的生活经验，使河南人对“实干”有一种朴素的信仰和追求，崇尚脚踏实地做事、真诚厚道做人。
@@ -216,7 +365,11 @@ export default function Culture() {
           </p>
         </div>
         {/* 奋斗河南 人杰地灵的淳风沃土 */}
-        <div className="mb-[2vw]">
+        <div
+          className="pl-[300px] overflow-hidden"
+          ref={fendouRef}
+          title="奋斗河南 人杰地灵的淳风沃土"
+        >
           <h1 className="text-[2.5vw]">奋斗河南 人杰地灵的淳风沃土</h1>
           <p className="text-[1vw]">
             “梅花香自苦寒来”，一方水土养育一方人。我国自古就有得中原者得天下之说，河南历来都是兵家必争之地，无数的战争使这里的人民流离失所。旧社会的河南，黄河泛滥，天灾不断，历经磨难的中原儿女在困苦中拼搏，锤炼了栉风沐雨、薪火相传，筚路蓝缕、玉汝于成的奋斗精神，在战天斗地中创造了无数奇迹，使之成为人文荟萃、英雄辈出的一方沃土。愚公移山的故事就发生在河南济源，而发出“王侯将相宁有种乎”历史拷问、“揭竿而起”的农民起义领袖陈胜、吴广，就出生在河南平舆和太康。
@@ -253,7 +406,11 @@ export default function Culture() {
           </p>
         </div>
         {/* 红色河南 薪火传承的伟大精神 */}
-        <div className="mb-[2vw]">
+        <div
+          className="pl-[300px] overflow-hidden"
+          ref={hongseRef}
+          title="红色河南 薪火传承的伟大精神"
+        >
           <h1 className="text-[2.5vw]">红色河南 薪火传承的伟大精神</h1>
           <p className="text-[1vw]">
             河南是一片革命的热土，悠久的红色历史和丰富的红色精神是我们最为宝贵的财富，永远激励着中原儿女昂首奋进。这里有大别山精神，“坚守信念、胸怀全局、团结一心、勇当前锋”。
@@ -300,7 +457,11 @@ export default function Culture() {
           </p>
         </div>
         {/* 大美河南 诗和远方的神奇交融 */}
-        <div className="mb-[2vw]">
+        <div
+          className="pl-[300px] overflow-hidden"
+          ref={dameiRef}
+          title="大美河南 诗和远方的神奇交融"
+        >
           <h1 className="text-[2.5vw]">大美河南 诗和远方的神奇交融</h1>
           <p className="text-[1vw]">
             辽阔的中原大地，群山拱卫、峰峦叠翠，河流纵横、湖塘棋布，名胜古迹、交相辉映。自然风光和人文景观相得益彰，共同勾勒出一幅大美河南的壮丽画卷。河南的山雄伟险峻。太行山雄踞华北众山之首，地势险绝的郭亮村挂壁公路、步随景移的安阳林州大峡谷、雄险秀美的焦作云台山，都是巍巍太行给河南的馈赠。人们说，太行山把最美的一段留在了河南。伏牛山绵延八百里，“人间仙境”洛阳白云山、中原之巅三门峡老鸦岔、峰林耸立的平顶山尧山、怪石林立的驻马店嵖岈山。著名的中岳嵩山，横卧中原大地，立于天地之中，七十二峰峦壑叠翠，少林寺、中岳庙等名胜掩映在群山翠柏之间，形成了秀美奇峻的恢弘气象。
@@ -347,7 +508,11 @@ export default function Culture() {
           </p>
         </div>
         {/* 出彩河南 谱写新时代绚丽篇章 */}
-        <div className="mb-[2vw]">
+        <div
+          className="pl-[300px] overflow-hidden"
+          ref={chucaiRef}
+          title="出彩河南 谱写新时代绚丽篇章"
+        >
           <h1 className="text-[2.5vw]">出彩河南 谱写新时代绚丽篇章</h1>
           <p className="text-[1vw]">
             2019年习近平总书记在河南视察时指出，河南要在中部崛起中奋勇争先，深入贯彻黄河流域生态保护和高质量发展战略，谱写新时代中原更加出彩的绚丽篇章。中原儿女时刻牢记总书记的殷切嘱托，真抓实干、砥砺前行。

@@ -1,8 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import { z } from "zod";
+
+const RegisterSchema = z.object({
+  name: z.string().min(1, { message: "Name cannot be empty" }),
+  phone: z.number().int().positive({ message: "Phone number is invalid" }),
+  company: z.string().min(1, { message: "Minimum of 1 characters" }),
+  occupation: z.enum(["金融", "互联网", "房地产"]),
+  incomes: z.string().min(1, { message: "Minimum of 1 characters" }),
+  learning_experience: z
+    .string()
+    .min(1, { message: "Minimum of 1 characters" }),
+});
 
 export default function Enroll() {
+  const [errors, setErrors] = useState({});
   const [userinfo, setUserinfo] = useState<UserInfo>({
     name: "",
     phone: "",
@@ -20,6 +33,11 @@ export default function Enroll() {
   };
 
   const handleSubmit = async () => {
+    const result = RegisterSchema.safeParse(userinfo);
+
+    if (!result.success) {
+      setErrors(result.error.formErrors.fieldErrors);
+    }
     try {
       const response = await fetch("/api/user", {
         method: "POST",
@@ -47,6 +65,8 @@ export default function Enroll() {
     } catch (error) {
       console.error("Error creating user:", error);
     }
+
+    console.log(errors);
   };
 
   return (
