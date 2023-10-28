@@ -132,7 +132,6 @@ export default function Culture() {
         >
           <p className="text-[1vw]">
             河南处于黄河中下游，居于中国中东部。河南之得名与黄河有莫大的关系...
-            // 余下的内容...
           </p>
           <Image
             src="/images/aboutus/1.png"
