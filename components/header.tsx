@@ -31,6 +31,14 @@ export default function Header() {
     };
   }, []);
 
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      if (e.currentTarget.value === "123") {
+        router.push("/admin");
+      }
+    }
+  };
+
   return (
     <>
       <div
@@ -170,6 +178,7 @@ export default function Header() {
           <input
             type="text"
             className="w-[10vw] bg-white/50 rounded-lg text-black pl-8 focus:outline-none"
+            onKeyUp={handleSearch}
           />
         </div>
         {/* nav bar for mobile */}
