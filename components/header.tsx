@@ -7,6 +7,7 @@ import Image from "next/image";
 
 import { RiSearchLine } from "react-icons/ri";
 import { HiMenu } from "react-icons/hi";
+import { BiSolidUser } from "react-icons/bi";
 
 export default function Header() {
   const router = useRouter();
@@ -171,16 +172,25 @@ export default function Header() {
             海南志途教育科技有限公司
           </h1>
         </div>
-
-        {/* search bar */}
-        <div className="relative hidden md:flex items-center">
-          <RiSearchLine color="black" className="absolute left-2" />
-          <input
-            type="text"
-            className="w-[10vw] bg-white/50 rounded-lg text-black pl-8 focus:outline-none"
-            onKeyUp={handleSearch}
-          />
+        <div className="flex items-center text-black">
+          <div
+            className="flex cursor-pointer"
+            onClick={() => router.push("/user")}
+          >
+            <BiSolidUser color="black" size="30" />
+            <h1>用户注册</h1>
+          </div>
+          {/* search bar */}
+          <div className="relative hidden md:flex items-center">
+            <RiSearchLine color="black" className="absolute left-2" />
+            <input
+              type="text"
+              className="w-[10vw] bg-white/50 rounded-lg text-black pl-8 focus:outline-none"
+              onKeyUp={handleSearch}
+            />
+          </div>
         </div>
+
         {/* nav bar for mobile */}
         <div
           className="flex md:hidden items-center cursor-pointer"
