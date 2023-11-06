@@ -70,14 +70,14 @@ export default function UserRegistration() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <div className="flex flex-col items-center h-screen">
       {page === "register" && (
         <>
           <h1 className="text-black text-[4vw]">用户注册</h1>
           {/* 注册姓名 */}
           <div className="w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black"
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
               type="text"
               placeholder="姓名"
               onChange={(e) =>
@@ -88,7 +88,7 @@ export default function UserRegistration() {
           {/* 注册邮箱 */}
           <div className="w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black"
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
               type="email"
               placeholder="邮箱"
               onChange={(e) =>
@@ -99,7 +99,7 @@ export default function UserRegistration() {
           {/* 注册手机号 */}
           <div className="w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black"
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
               type="text"
               placeholder="手机号"
               onChange={(e) =>
@@ -110,7 +110,7 @@ export default function UserRegistration() {
           {/* 注册密码 */}
           <div className="w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black"
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
               type="password"
               placeholder="密码"
               onChange={(e) =>
@@ -121,7 +121,7 @@ export default function UserRegistration() {
 
           <div className="w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black"
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
               type="password"
               placeholder="确认密码"
               onChange={(e) =>
@@ -136,7 +136,7 @@ export default function UserRegistration() {
             <div className="w-[50%] text-red-500">{registerError}</div>
           )}
           <div
-            className="w-[30%] border border-black text-black text-center rounded hover:text-white hover:bg-black cursor-pointer"
+            className="w-[20%] h-[50px] leading-[50px] border border-black text-black text-center rounded hover:text-white hover:bg-black"
             onClick={handleRegister}
           >
             注册
@@ -145,10 +145,10 @@ export default function UserRegistration() {
       )}
       {page === "login" && (
         <>
-          <h1 className="text-black text-[4vw]">用户登陆</h1>
+          <h1 className="text-black text-[4vw] my-[2vw]">用户登陆</h1>
           <div className="w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black"
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
               type="text"
               placeholder="邮箱"
               onChange={(e) => {
@@ -158,7 +158,7 @@ export default function UserRegistration() {
           </div>
           <div className="w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black"
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
               type="text"
               placeholder="密码"
               onChange={(e) => {
@@ -171,7 +171,7 @@ export default function UserRegistration() {
             <div className="w-[50%] text-red-500">{loginError}</div>
           )}
           <div
-            className="w-[30%] border border-black text-black text-center rounded hover:text-white hover:bg-black cursor-pointer"
+            className="w-[20%] h-[50px] leading-[50px] border border-black text-black text-center rounded hover:text-white hover:bg-black"
             onClick={handleLogin}
           >
             登陆
@@ -179,7 +179,7 @@ export default function UserRegistration() {
         </>
       )}
       <p
-        className="text-black cursor-pointer mt-4"
+        className="w-screen text-black cursor-pointer mt-4 text-center hover:underline"
         onClick={() => setPage(page === "login" ? "register" : "login")}
       >
         {page === "login" ? "创建账号" : "已有账号？登录"}

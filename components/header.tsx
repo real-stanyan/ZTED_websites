@@ -173,12 +173,13 @@ export default function Header() {
           </h1>
         </div>
         <div className="flex items-center text-black">
+          {/* 用户注册 */}
           <div
-            className="flex cursor-pointer"
+            className="flex cursor-pointer mr-[1vw]"
             onClick={() => router.push("/user")}
           >
-            <BiSolidUser color="black" size="30" />
-            <h1>用户注册</h1>
+            {/* <BiSolidUser color="black" size="30" /> */}
+            <h1 className="align-middle hover:underline">用户注册</h1>
           </div>
           {/* search bar */}
           <div className="relative hidden md:flex items-center">
