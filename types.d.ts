@@ -1,10 +1,10 @@
 type UserInfo = {
   name: string;
-  phone: string;
-  company: string;
-  occupation: string;
-  incomes: string;
-  learning_experience: string;
+  phoneNum: string;
+  companyName: string;
+  position: string;
+  annualRevenue: double;
+  classType: string;
 };
 
 type CourseInfo = {
@@ -23,6 +23,11 @@ type AdminRegister = {
   email: string;
   confirmPassword: string;
   position: string;
+};
+
+type UserLogin = {
+  email: string;
+  password: string;
 };
 
 type UserRegister = {

@@ -55,13 +55,13 @@ export default function Admin() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <>
       {page === "login" && (
-        <>
-          <h1 className="text-black text-[4vw]">管理员登陆</h1>
+        <div className="w-screen flex flex-col items-center">
+          <h1 className="text-black text-[4vw] my-[2vw]">管理员登陆</h1>
           <div className="w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black"
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
               type="text"
               placeholder="用户名"
               onChange={(e) =>
@@ -71,7 +71,7 @@ export default function Admin() {
           </div>
           <div className="w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black"
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] focus:outline-none"
               type="password"
               placeholder="密码"
               onChange={(e) =>
@@ -83,12 +83,12 @@ export default function Admin() {
             <div className="w-[50%] text-red-500">{loginError}</div>
           )}
           <div
-            className="w-[30%] border border-black text-black text-center rounded hover:text-white hover:bg-black"
+            className="w-[20%] h-[50px] leading-[50px] border border-black text-black text-center rounded hover:text-white hover:bg-black"
             onClick={handleLogin}
           >
             登陆
           </div>
-        </>
+        </div>
       )}
       {page === "register" && (
         <>
@@ -172,6 +172,6 @@ export default function Admin() {
       >
         {page === "login" ? "注册管理员" : "返回登录"}
       </p>
-    </div>
+    </>
   );
 }

@@ -23,11 +23,11 @@ export default function Enroll() {
   >([]);
   const [userinfo, setUserinfo] = useState<UserInfo>({
     name: "",
-    phone: "",
-    company: "",
-    occupation: "",
-    incomes: "",
-    learning_experience: "",
+    phoneNum: "",
+    companyName: "",
+    position: "",
+    annualRevenue: "",
+    classType: "",
   });
 
   const handleInputChange = (
@@ -38,68 +38,13 @@ export default function Enroll() {
   };
 
   const handleSubmit = async () => {
-    setNameError([]);
-    setPhoneError([]);
-    setCompanyError([]);
-    setOccupationError([]);
-    setIncomesError([]);
-    setLearning_experienceError([]);
+    const res = await fetch("http://localhost:8080/ZTED/registrationForm", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userinfo),
+    });
 
-    const result = RegisterSchema.safeParse(userinfo);
-
-    if (!result.success) {
-      const errors = result.error.formErrors.fieldErrors;
-      console.log(errors);
-
-      if (errors && errors.hasOwnProperty("name")) {
-        setNameError(errors.name || []);
-      }
-      if (errors && errors.hasOwnProperty("phone")) {
-        setPhoneError(errors.phone || []);
-      }
-      if (errors && errors.hasOwnProperty("company")) {
-        setCompanyError(errors.company || []);
-      }
-      if (errors && errors.hasOwnProperty("occupation")) {
-        setOccupationError(errors.occupation || []);
-      }
-      if (errors && errors.hasOwnProperty("incomes")) {
-        setIncomesError(errors.incomes || []);
-      }
-      if (errors && errors.hasOwnProperty("learning_experience")) {
-        setLearning_experienceError(errors.learning_experience || []);
-      }
-
-      return;
-    }
-
-    try {
-      const response = await fetch("/api/user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userinfo),
-      });
-
-      if (response.status === 200) {
-        alert("提交成功");
-        setUserinfo({
-          name: "",
-          phone: "",
-          company: "",
-          occupation: "",
-          incomes: "",
-          learning_experience: "",
-        });
-      } else {
-        alert("提交失败");
-      }
-
-      // return data;
-    } catch (error) {
-      console.error("Error creating user:", error);
-    }
+    console.log(res);
   };
 
   return (
@@ -129,9 +74,9 @@ export default function Enroll() {
         {/* 手机号码 */}
         <div className="w-[100%] h-[50px] font-sans">
           <input
-            value={userinfo.phone}
+            value={userinfo.phoneNum}
             type="text"
-            name="phone"
+            name="phoneNum"
             className="w-[100%] h-[50px] bg-transparent border-2 border-black/10 placeholder:text-black rounded-lg p-2"
             placeholder="手机号码"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -150,9 +95,9 @@ export default function Enroll() {
         {/* 企业名称 */}
         <div className="w-[100%] h-[50px] font-sans">
           <input
-            value={userinfo.company}
+            value={userinfo.companyName}
             type="text"
-            name="company"
+            name="companyName"
             className="w-[100%] h-[50px] bg-transparent border-2 border-black/10 placeholder:text-black rounded-lg p-2"
             placeholder="企业名称"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -171,9 +116,9 @@ export default function Enroll() {
         {/* 您的职位 */}
         <div className="w-[100%] h-[50px] font-sans">
           <select
-            value={userinfo.occupation}
-            name="occupation"
-            id="occupation"
+            value={userinfo.position}
+            name="position"
+            id="position"
             className="w-[100%] h-[50px] bg-transparent border-2 border-black/10 rounded-lg p-2"
             onChange={handleInputChange}
           >
@@ -194,9 +139,9 @@ export default function Enroll() {
         {/* 公司年营收 */}
         <div className="w-[100%] h-[50px] font-sans">
           <select
-            value={userinfo.incomes}
-            name="incomes"
-            id="incomes"
+            value={userinfo.annualRevenue}
+            name="annualRevenue"
+            id="annualRevenue"
             className="w-[100%] h-[50px] bg-transparent border-2 border-black/10 rounded-lg p-2"
             onChange={handleInputChange}
           >
@@ -219,15 +164,21 @@ export default function Enroll() {
         {/* 你希望得到什的收获 */}
         <div className="w-[100%] h-[50px] font-sans">
           <select
-            value={userinfo.learning_experience}
-            name="learning_experience"
+            value={userinfo.classType}
+            name="classType"
             id="learning_experience"
             className="w-[100%] h-[50px] bg-transparent border-2 border-black/10 rounded-lg p-2"
             onChange={handleInputChange}
           >
-            <option value="">你希望得到什的收获</option>
-            <option value="A">A</option>
-            <option value="B">B</option>
+            <option value="">课程类型</option>
+            <option value="北京大学现代管理与国学研修班">
+              北京大学现代管理与国学研修班
+            </option>
+            <option value="北京大学(豫商)企业转型升级领导力提升高级研修班">
+              北京大学(豫商)企业转型升级领导力提升高级研修班
+            </option>
+            <option value="南美文化商务研学班">南美文化商务研学班</option>
+            <option value="普陀山觉醒研修班">普陀山·觉醒研修班</option>
           </select>
           <h1
             className={`font-sans self-start text-[red] ${
