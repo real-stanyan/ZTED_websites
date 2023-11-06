@@ -91,83 +91,81 @@ export default function Admin() {
         </div>
       )}
       {page === "register" && (
-        <>
-          <>
-            <h1 className="text-black text-[4vw]">管理员注册</h1>{" "}
-            <div className="w-[50%]">
-              <input
-                className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black"
-                type="text"
-                placeholder="名称"
-                onChange={(e) => {
-                  setAdminRegister({ ...adminRegister, name: e.target.value });
-                }}
-              />
-            </div>
-            <div className="w-[50%]">
-              <input
-                className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black"
-                type="text"
-                placeholder="邮箱"
-                onChange={(e) => {
-                  setAdminRegister({ ...adminRegister, email: e.target.value });
-                }}
-              />
-            </div>
-            <div className="w-[50%]">
-              <input
-                className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black"
-                type="password"
-                placeholder="密码"
-                onChange={(e) => {
-                  setAdminRegister({
-                    ...adminRegister,
-                    password: e.target.value,
-                  });
-                }}
-              />
-            </div>
-            <div className="w-[50%]">
-              <input
-                className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black"
-                type="password"
-                placeholder="确认密码"
-                onChange={(e) => {
-                  setAdminRegister({
-                    ...adminRegister,
-                    confirmPassword: e.target.value,
-                  });
-                }}
-              />
-            </div>
-            <div className="w-[50%]">
-              <select
-                name="learning_experience"
-                id="learning_experience"
-                className="w-[100%] h-[50px] bg-transparent border-2 border-black/10 rounded-lg p-2 text-black"
-                onChange={(e) => {
-                  setAdminRegister({
-                    ...adminRegister,
-                    position: e.target.value,
-                  });
-                }}
-              >
-                <option value="">权限</option>
-                <option value="1">等级1</option>
-                <option value="2">等级2</option>
-              </select>
-            </div>
-            <div
-              className="w-[30%] border border-black text-black text-center rounded hover:text-white hover:bg-black cursor-pointer"
-              onClick={handleRegister}
+        <div className="w-screen flex flex-col items-center">
+          <h1 className="text-black text-[4vw] my-[2vw]">管理员注册</h1>{" "}
+          <div className="w-[50%]">
+            <input
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
+              type="text"
+              placeholder="名称"
+              onChange={(e) => {
+                setAdminRegister({ ...adminRegister, name: e.target.value });
+              }}
+            />
+          </div>
+          <div className="w-[50%]">
+            <input
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
+              type="text"
+              placeholder="邮箱"
+              onChange={(e) => {
+                setAdminRegister({ ...adminRegister, email: e.target.value });
+              }}
+            />
+          </div>
+          <div className="w-[50%]">
+            <input
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
+              type="password"
+              placeholder="密码"
+              onChange={(e) => {
+                setAdminRegister({
+                  ...adminRegister,
+                  password: e.target.value,
+                });
+              }}
+            />
+          </div>
+          <div className="w-[50%]">
+            <input
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
+              type="password"
+              placeholder="确认密码"
+              onChange={(e) => {
+                setAdminRegister({
+                  ...adminRegister,
+                  confirmPassword: e.target.value,
+                });
+              }}
+            />
+          </div>
+          <div className="w-[50%]">
+            <select
+              name="learning_experience"
+              id="learning_experience"
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
+              onChange={(e) => {
+                setAdminRegister({
+                  ...adminRegister,
+                  position: e.target.value,
+                });
+              }}
             >
-              注册
-            </div>
-          </>
-        </>
+              <option value="">权限</option>
+              <option value="1">等级1</option>
+              <option value="2">等级2</option>
+            </select>
+          </div>
+          <div
+            className="w-[20%] h-[50px] leading-[50px] border border-black text-black text-center rounded hover:text-white hover:bg-black"
+            onClick={handleRegister}
+          >
+            注册
+          </div>
+        </div>
       )}
       <p
-        className="text-black cursor-pointer mt-4"
+        className="w-screen text-black cursor-pointer mt-4 text-center hover:underline"
         onClick={() => setPage(page === "login" ? "register" : "login")}
       >
         {page === "login" ? "注册管理员" : "返回登录"}
