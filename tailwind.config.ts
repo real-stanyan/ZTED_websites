@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        formal: ['"Noto Sans SC"', "sans-serif"],
+      },
       backgroundImage: {
         "aboutus-title": "url(/images/aboutus_title.png)",
         "news-bg": "url(/images/map.png)",

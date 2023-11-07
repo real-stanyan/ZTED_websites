@@ -199,7 +199,9 @@ export default function Header() {
         <div className="flex items-center text-black">
           {/* 用户注册 */}
           {isLogin ? (
-            <div>你好👋 {currentUser.name}</div>
+            <div className="font-formal text-[1.5vw] mr-[1vw]">
+              你好👋 {currentUser.name}
+            </div>
           ) : (
             <div
               className="flex cursor-pointer mr-[1vw]"

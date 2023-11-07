@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Admin() {
+  const router = useRouter();
   const [page, setPage] = useState("login");
   const [loginError, setLoginError] = useState("");
   const [registerError, setRegisterError] = useState("");
@@ -39,6 +41,7 @@ export default function Admin() {
 
     if (res.status === 200) {
       setLoginError("");
+      router.push("/admin/dashboard");
     }
 
     if (res.status === 400) {
