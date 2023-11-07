@@ -143,11 +143,26 @@ export default function UserRegistration() {
     });
 
     if (res.status === 200) {
+      // const exitUser = localStorage.getItem("userInfo");
       const userInfo = await res.json();
-      const userInfoString = JSON.stringify(userInfo);
-      localStorage.setItem("userInfo", userInfoString);
       console.log(userInfo);
 
+      const userInfoString = JSON.stringify(userInfo);
+      localStorage.setItem("userInfo", userInfoString);
+      // if (exitUser) {
+      //   const exitUserObj = JSON.parse(exitUser);
+      //   if (userInfo.email !== exitUserObj.email) {
+      //     localStorage.removeItem("userInfo");
+      //     localStorage.setItem("userInfo", userInfoString);
+      //   } else if (userInfo.email === exitUserObj.email) {
+      //     const updateUserInfo = { ...exitUserObj, time: userInfo.loginTime };
+      //     localStorage.removeItem("userInfo");
+      //     localStorage.setItem("userInfo", JSON.stringify(updateUserInfo));
+      //   }
+      // } else {
+      //   localStorage.setItem("userInfo", userInfoString);
+      // }
+      window.location.reload();
       setLoginError("");
       router.push("/");
     }
@@ -173,7 +188,7 @@ export default function UserRegistration() {
           {/* 注册姓名 */}
           <div className="w-[70%] md:w-[50%]">
             <input
-              className={`w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
+              className={`font-formal w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
                 registerInputError.name ? "border-red-500" : ""
               }`}
               type="text"
@@ -186,7 +201,7 @@ export default function UserRegistration() {
           {/* 注册邮箱 */}
           <div className="w-[70%] md:w-[50%]">
             <input
-              className={`w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
+              className={`font-formal w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
                 registerInputError.email ? "border-red-500" : ""
               }`}
               type="email"
@@ -199,7 +214,7 @@ export default function UserRegistration() {
           {/* 注册手机号 */}
           <div className="w-[70%] md:w-[50%]">
             <input
-              className={`w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
+              className={`font-formal w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
                 registerInputError.phoneNum ? "border-red-500" : ""
               }`}
               type="text"
@@ -212,7 +227,7 @@ export default function UserRegistration() {
           {/* 注册密码 */}
           <div className="w-[70%] md:w-[50%]">
             <input
-              className={`w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
+              className={`font-formal w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
                 registerInputError.password ? "border-red-500" : ""
               }`}
               type="password"
@@ -225,7 +240,7 @@ export default function UserRegistration() {
 
           <div className="w-[70%] md:w-[50%]">
             <input
-              className={`w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
+              className={`font-formal w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
                 registerInputError.confirmPassword ? "border-red-500" : ""
               }`}
               type="password"
@@ -262,7 +277,7 @@ export default function UserRegistration() {
           {/* 登陆邮箱 */}
           <div className="w-[70%] md:w-[50%]">
             <input
-              className={`w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
+              className={`font-formal w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
                 loginInputError.email ? "border-red-500" : ""
               }`}
               type="text"
@@ -275,7 +290,7 @@ export default function UserRegistration() {
           {/* 登陆密码 */}
           <div className="w-[70%] md:w-[50%]">
             <input
-              className={`w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
+              className={`font-formal w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
                 loginInputError.password ? "border-red-500" : ""
               }`}
               type="text"

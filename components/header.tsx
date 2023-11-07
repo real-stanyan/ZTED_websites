@@ -7,8 +7,6 @@ import Image from "next/image";
 
 import { RiSearchLine } from "react-icons/ri";
 import { HiMenu } from "react-icons/hi";
-import { BiSolidUser } from "react-icons/bi";
-import { set } from "mongoose";
 
 export default function Header() {
   const router = useRouter();
@@ -36,11 +34,20 @@ export default function Header() {
     const user = localStorage.getItem("userInfo");
 
     if (user) {
-      setIsLogin(true);
-      // console.log(user);
-
       const user_ = JSON.parse(user);
-      // console.log(user_);
+      const loginTimeStamp = Date.parse(user_.loginTime);
+      const nowTimeStamp = Date.now();
+      const timeDiff = nowTimeStamp - loginTimeStamp;
+      if (timeDiff > 86400000) {
+        console.log("user expired");
+
+        localStorage.removeItem("userInfo");
+        setIsLogin(false);
+      } else {
+        console.log("user still login");
+        setIsLogin(true);
+      }
+      console.log(user_);
 
       setCurrentUser({
         name: user_.Username,
@@ -69,6 +76,11 @@ export default function Header() {
         router.push("/admin");
       }
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("userInfo");
+    setIsLogin(false);
   };
 
   return (
@@ -206,8 +218,16 @@ export default function Header() {
         <div className="flex items-center text-black">
           {/* 用户注册 */}
           {isLogin ? (
-            <div className="font-formal text-[1.5vw] mr-[1vw]">
+            <div className="group w-[10vw] font-formal text-[1.5vw] mr-[1vw]">
               你好👋 {currentUser.name}
+              <div className="w-[10vw] absolute border-2 bg-white group-hover:block hidden duration-1000">
+                <div
+                  className="font-formal text-center cursor-pointer"
+                  onClick={handleLogout}
+                >
+                  登出
+                </div>
+              </div>
             </div>
           ) : (
             <div
