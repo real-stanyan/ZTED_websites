@@ -17,6 +17,7 @@ export default function Header() {
   const [currentUser, setCurrentUser] = useState<User>({
     name: "",
     email: "",
+    time: "",
   });
 
   useEffect(() => {
@@ -44,11 +45,17 @@ export default function Header() {
       setCurrentUser({
         name: user_.Username,
         email: user_.email,
+        time: user_.loginTime,
       });
 
       // setCurrentUser({ name, email });
       // console.log(currentUser);
     }
+
+    function isUserExpired() {
+      const user = localStorage.getItem("userInfo");
+    }
+    isUserExpired;
 
     // 当组件卸载时移除事件监听器
     return () => {

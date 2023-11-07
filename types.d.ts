@@ -42,4 +42,5 @@ type UserRegister = {
 type User = {
   name: string;
   email: string;
+  time: string;
 };
