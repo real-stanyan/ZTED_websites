@@ -2,9 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Noto_Serif_SC } from "next/font/google";
-
-const Noto = Noto_Serif_SC({ weight: ["400", "600"], subsets: ["latin"] });
 
 export default function UserRegistration() {
   const router = useRouter();
@@ -166,9 +163,12 @@ export default function UserRegistration() {
     <div className="flex flex-col items-center h-screen">
       {page === "register" && (
         <>
-          <h1 className="text-black text-[4vw]">用户注册</h1>
+          {/* 用户注册Title */}
+          <h1 className="text-black text-[6vw] md:text-[4vw] my-[4vw] md:my-[2vw]">
+            用户注册
+          </h1>
           {/* 注册姓名 */}
-          <div className="w-[50%]">
+          <div className="w-[70%] md:w-[50%]">
             <input
               className={`w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
                 registerInputError.name ? "border-red-500" : ""
@@ -181,7 +181,7 @@ export default function UserRegistration() {
             />
           </div>
           {/* 注册邮箱 */}
-          <div className="w-[50%]">
+          <div className="w-[70%] md:w-[50%]">
             <input
               className={`w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
                 registerInputError.email ? "border-red-500" : ""
@@ -194,7 +194,7 @@ export default function UserRegistration() {
             />
           </div>
           {/* 注册手机号 */}
-          <div className="w-[50%]">
+          <div className="w-[70%] md:w-[50%]">
             <input
               className={`w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
                 registerInputError.phoneNum ? "border-red-500" : ""
@@ -207,7 +207,7 @@ export default function UserRegistration() {
             />
           </div>
           {/* 注册密码 */}
-          <div className="w-[50%]">
+          <div className="w-[70%] md:w-[50%]">
             <input
               className={`w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
                 registerInputError.password ? "border-red-500" : ""
@@ -220,7 +220,7 @@ export default function UserRegistration() {
             />
           </div>
 
-          <div className="w-[50%]">
+          <div className="w-[70%] md:w-[50%]">
             <input
               className={`w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
                 registerInputError.confirmPassword ? "border-red-500" : ""
@@ -243,7 +243,7 @@ export default function UserRegistration() {
             {registerError}
           </div>
           <div
-            className="w-[20%] h-[50px] leading-[50px] border border-black text-black text-center rounded hover:text-white hover:bg-black"
+            className=" w-[50%] md:w-[20%] h-[40px] md:h-[50px] leading-[40px] md:leading-[50px] border border-black text-black text-center rounded hover:text-white hover:bg-black"
             onClick={handleRegister}
           >
             注册
@@ -252,8 +252,12 @@ export default function UserRegistration() {
       )}
       {page === "login" && (
         <>
-          <h1 className="text-black text-[4vw] my-[2vw]">用户登陆</h1>
-          <div className="w-[50%]">
+          {/* 用户登陆Title */}
+          <h1 className="text-black text-[6vw] md:text-[4vw] my-[4vw] md:my-[2vw]">
+            用户登陆
+          </h1>
+          {/* 登陆邮箱 */}
+          <div className="w-[70%] md:w-[50%]">
             <input
               className={`w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
                 loginInputError.email ? "border-red-500" : ""
@@ -265,7 +269,8 @@ export default function UserRegistration() {
               }}
             />
           </div>
-          <div className="w-[50%]">
+          {/* 登陆密码 */}
+          <div className="w-[70%] md:w-[50%]">
             <input
               className={`w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
                 loginInputError.password ? "border-red-500" : ""
@@ -278,15 +283,12 @@ export default function UserRegistration() {
             />
           </div>
 
-          {/* {loginError !== "" && (
-            <div className="w-[50%] text-red-500">{loginError}</div>
-          )} */}
           {/* 登陆报错 */}
           <div className="w-full min-h-[30px] text-center text-red-500">
             {loginError}
           </div>
           <div
-            className="w-[20%] h-[50px] leading-[50px] border border-black text-black text-center rounded hover:text-white hover:bg-black"
+            className=" w-[50%] md:w-[20%] h-[40px] md:h-[50px] leading-[40px] md:leading-[50px] border border-black text-black text-center rounded hover:text-white hover:bg-black"
             onClick={handleLogin}
           >
             登陆
