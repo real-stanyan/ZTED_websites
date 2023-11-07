@@ -143,6 +143,11 @@ export default function UserRegistration() {
     });
 
     if (res.status === 200) {
+      const userInfo = await res.json();
+      const userInfoString = JSON.stringify(userInfo);
+      localStorage.setItem("userInfo", userInfoString);
+      console.log(userInfo);
+
       setLoginError("");
       router.push("/");
     }
@@ -155,8 +160,6 @@ export default function UserRegistration() {
     if (res.status === 429) {
       setLoginError("登陆次数过多，请一分钟再试");
     }
-
-    console.log(res);
   };
 
   return (

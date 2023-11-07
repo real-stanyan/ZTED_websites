@@ -8,10 +8,16 @@ import Image from "next/image";
 import { RiSearchLine } from "react-icons/ri";
 import { HiMenu } from "react-icons/hi";
 import { BiSolidUser } from "react-icons/bi";
+import { set } from "mongoose";
 
 export default function Header() {
   const router = useRouter();
   const [MobileNav, setMobileNav] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const [currentUser, setCurrentUser] = useState<User>({
+    name: "",
+    email: "",
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +31,24 @@ export default function Header() {
     };
 
     window.addEventListener("scroll", handleScroll);
+
+    const user = localStorage.getItem("userInfo");
+
+    if (user) {
+      setIsLogin(true);
+      // console.log(user);
+
+      const user_ = JSON.parse(user);
+      // console.log(user_);
+
+      setCurrentUser({
+        name: user_.Username,
+        email: user_.email,
+      });
+
+      // setCurrentUser({ name, email });
+      // console.log(currentUser);
+    }
 
     // 当组件卸载时移除事件监听器
     return () => {
@@ -174,13 +198,17 @@ export default function Header() {
         </div>
         <div className="flex items-center text-black">
           {/* 用户注册 */}
-          <div
-            className="flex cursor-pointer mr-[1vw]"
-            onClick={() => router.push("/user")}
-          >
-            {/* <BiSolidUser color="black" size="30" /> */}
-            <h1 className="align-middle hover:underline">用户注册</h1>
-          </div>
+          {isLogin ? (
+            <div>你好👋 {currentUser.name}</div>
+          ) : (
+            <div
+              className="flex cursor-pointer mr-[1vw]"
+              onClick={() => router.push("/user")}
+            >
+              {/* <BiSolidUser color="black" size="30" /> */}
+              <h1 className="align-middle hover:underline">用户注册</h1>
+            </div>
+          )}
           {/* search bar */}
           <div className="relative hidden md:flex items-center">
             <RiSearchLine color="black" className="absolute left-2" />

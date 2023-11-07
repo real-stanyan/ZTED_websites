@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { z } from "zod";
 
 const RegisterSchema = z.object({
@@ -22,6 +22,7 @@ export default function Enroll() {
     string[]
   >([]);
   const [userinfo, setUserinfo] = useState<UserInfo>({
+    registerEmail: "",
     name: "",
     phoneNum: "",
     companyName: "",
@@ -29,6 +30,16 @@ export default function Enroll() {
     annualRevenue: "",
     classType: "",
   });
+  const [userEmail, setUserEmail] = useState("");
+
+  useEffect(() => {
+    const user = localStorage.getItem("userInfo");
+    if (user) {
+      const user_ = JSON.parse(user);
+
+      setUserinfo({ ...userinfo, registerEmail: user_.email });
+    }
+  }, []);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -50,6 +61,7 @@ export default function Enroll() {
   return (
     <>
       <div className="flex flex-col justify-evenly w-[60%] h-[45vw] mx-auto items-center text-black">
+        <h1 className=" text-[4vw] md:text-[3vw]">课程报名</h1>
         {/* 姓名 */}
         <div className="w-[100%] h-[50px] font-sans">
           <input

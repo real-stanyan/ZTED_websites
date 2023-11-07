@@ -1,4 +1,5 @@
 type UserInfo = {
+  registerEmail: string;
   name: string;
   phoneNum: string;
   companyName: string;
@@ -36,4 +37,9 @@ type UserRegister = {
   phoneNum: string;
   password: string;
   confirmPassword: string;
+};
+
+type User = {
+  name: string;
+  email: string;
 };

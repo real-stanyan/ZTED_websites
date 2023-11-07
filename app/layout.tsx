@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="zh" className="overflow-x-hidden">
       <body
-        className={`min-w-screen bg-main-bg bg-auto bg-[#f7f7e9] bg-no-repeat bg-bottom`}
+        className={`min-w-screen min-h-screen bg-main-bg bg-auto bg-[#f7f7e9] bg-no-repeat bg-bottom`}
       >
         <Header />
         {children}

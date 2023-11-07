@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function Admin() {
   const [page, setPage] = useState("login");
   const [loginError, setLoginError] = useState("");
+  const [registerError, setRegisterError] = useState("");
   const [adminLogin, setAdminLogin] = useState<AdminLogin>({
     email: "",
     password: "",
@@ -15,6 +16,17 @@ export default function Admin() {
     email: "",
     confirmPassword: "",
     position: "",
+  });
+  const [loginInputError, setLoginInputError] = useState({
+    email: false,
+    password: false,
+  });
+  const [registerInputError, setRegisterInputError] = useState({
+    name: false,
+    email: false,
+    password: false,
+    confirmPassword: false,
+    position: false,
   });
 
   const handleLogin = async () => {
@@ -58,8 +70,10 @@ export default function Admin() {
     <>
       {page === "login" && (
         <div className="w-screen flex flex-col items-center">
-          <h1 className="text-black text-[4vw] my-[2vw]">管理员登陆</h1>
-          <div className="w-[50%]">
+          <h1 className="text-black text-[6vw] md:text-[4vw] my-[4vw] md:my-[2vw]">
+            管理员登陆
+          </h1>
+          <div className="w-[70%] md:w-[50%]">
             <input
               className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
               type="text"
@@ -69,7 +83,7 @@ export default function Admin() {
               }
             />
           </div>
-          <div className="w-[50%]">
+          <div className="w-[70%] md:w-[50%]">
             <input
               className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] focus:outline-none"
               type="password"
@@ -79,11 +93,12 @@ export default function Admin() {
               }
             />
           </div>
-          {loginError === "" ? null : (
-            <div className="w-[50%] text-red-500">{loginError}</div>
-          )}
+          {/* 登陆报错 */}
+          <div className="w-full min-h-[30px] text-center text-red-500">
+            {loginError}
+          </div>
           <div
-            className="w-[20%] h-[50px] leading-[50px] border border-black text-black text-center rounded hover:text-white hover:bg-black"
+            className=" w-[50%] md:w-[20%] h-[40px] md:h-[50px] leading-[40px] md:leading-[50px] border border-black text-black text-center rounded hover:text-white hover:bg-black"
             onClick={handleLogin}
           >
             登陆
@@ -155,6 +170,10 @@ export default function Admin() {
               <option value="1">等级1</option>
               <option value="2">等级2</option>
             </select>
+          </div>
+          {/* 注册报错 */}
+          <div className="w-full min-h-[30px] text-center text-red-500">
+            {registerError}
           </div>
           <div
             className="w-[20%] h-[50px] leading-[50px] border border-black text-black text-center rounded hover:text-white hover:bg-black"
