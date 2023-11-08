@@ -44,3 +44,9 @@ type User = {
   email: string;
   time: string;
 };
+
+type Admin = {
+  name: string;
+  email: string;
+  position: string;
+};

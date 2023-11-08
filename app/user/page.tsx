@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { set } from "mongoose";
 
 export default function UserRegistration() {
   const router = useRouter();
@@ -110,6 +111,9 @@ export default function UserRegistration() {
 
     if (res.status === 200) {
       setRegisterError("");
+      const userInfo = await res.json();
+      console.log(userInfo);
+      // alert(`注册成功, 欢迎您 ${userInfo.name}`);
       setPage("login");
     }
     if (res.status === 400) {
@@ -139,32 +143,20 @@ export default function UserRegistration() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userLogin),
-      // credentials: "include",
     });
-
+    // ```登陆成功```
     if (res.status === 200) {
-      // const exitUser = localStorage.getItem("userInfo");
       const userInfo = await res.json();
       console.log(userInfo);
 
       const userInfoString = JSON.stringify(userInfo);
       localStorage.setItem("userInfo", userInfoString);
-      // if (exitUser) {
-      //   const exitUserObj = JSON.parse(exitUser);
-      //   if (userInfo.email !== exitUserObj.email) {
-      //     localStorage.removeItem("userInfo");
-      //     localStorage.setItem("userInfo", userInfoString);
-      //   } else if (userInfo.email === exitUserObj.email) {
-      //     const updateUserInfo = { ...exitUserObj, time: userInfo.loginTime };
-      //     localStorage.removeItem("userInfo");
-      //     localStorage.setItem("userInfo", JSON.stringify(updateUserInfo));
-      //   }
-      // } else {
-      //   localStorage.setItem("userInfo", userInfoString);
-      // }
-      window.location.reload();
       setLoginError("");
+      alert(`登陆成功, 欢迎您 ${userInfo.Username}`);
       router.push("/");
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
     if (res.status === 400) {
       setLoginError("用户名或密码错误");

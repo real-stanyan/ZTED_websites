@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Admin() {
@@ -31,6 +31,10 @@ export default function Admin() {
     position: false,
   });
 
+  useEffect(() => {
+    localStorage.removeItem("userInfo");
+  }, []);
+
   const handleLogin = async () => {
     // 注意 await 关键字的使用
     const res = await fetch("http://localhost:8080/ZTED/administrator/login", {
@@ -38,10 +42,18 @@ export default function Admin() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(adminLogin),
     });
-
+    // ```登陆成功```
     if (res.status === 200) {
       setLoginError("");
+      const adminInfo = await res.json();
+      console.log(adminInfo);
+      const adminInfo_ = JSON.stringify(adminInfo);
+      localStorage.setItem("adminInfo", adminInfo_);
+
       router.push("/admin/dashboard");
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
 
     if (res.status === 400) {

@@ -60,7 +60,7 @@ export default function Enroll() {
 
   return (
     <>
-      <div className="flex flex-col justify-evenly w-[60%] h-[45vw] mx-auto items-center text-black">
+      <div className="flex flex-col justify-evenly w-[60%] py-[3vw] mx-auto items-center text-black">
         <h1 className=" text-[4vw] md:text-[3vw]">课程报名</h1>
         {/* 姓名 */}
         <div className="w-[100%] h-[50px] font-sans">

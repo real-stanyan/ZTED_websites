@@ -9,22 +9,22 @@ export default function page() {
       </h1>
       {/* 后代功能列表 */}
       <div className="flex w-[60%] flex-wrap">
-        <div className="w-[33%] h-[100px] bg-black border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white">
+        <div className="w-[33%] h-[100px] bg-[#890a05] hover:bg-[#bb0007] rounded-tl-3xl border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white">
           查看报名表
         </div>
-        <div className="w-[33%] h-[100px] bg-black border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white">
+        <div className="w-[33%] h-[100px] bg-[#890a05] hover:bg-[#bb0007] border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white">
           员工管理
         </div>
-        <div className="w-[33%] h-[100px] bg-black border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white">
+        <div className="w-[33%] h-[100px] bg-[#890a05] hover:bg-[#bb0007]  rounded-tr-3xl border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white">
           敬请期待🙈🛠️
         </div>
-        <div className="w-[33%] h-[100px] bg-black border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white">
+        <div className="w-[33%] h-[100px] bg-[#890a05] hover:bg-[#bb0007] rounded-bl-3xl border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white">
           敬请期待🙈🛠️
         </div>
-        <div className="w-[33%] h-[100px] bg-black border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white">
+        <div className="w-[33%] h-[100px] bg-[#890a05] hover:bg-[#bb0007] border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white">
           敬请期待🙈🛠️
         </div>
-        <div className="w-[33%] h-[100px] bg-black border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white">
+        <div className="w-[33%] h-[100px] bg-[#890a05] hover:bg-[#bb0007] rounded-br-3xl border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white">
           敬请期待🙈🛠️
         </div>
       </div>
