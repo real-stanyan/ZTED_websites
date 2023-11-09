@@ -1,12 +1,11 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 export default function page() {
-  const router = useRouter();
+  // const router = useRouter();
   return (
     <div className="w-full h-[90vh] flex flex-col items-center">
       <h1 className="font-formal text-[black] text-center text-[3vw] my-[2vw]">
@@ -14,25 +13,24 @@ export default function page() {
       </h1>
       {/* 后代功能列表 */}
       <div className="flex w-[60%] flex-wrap">
-        <div
+        <Link
+          href={"dashboard/registerForm"}
           className="w-[33%] h-[100px] bg-[#890a05] hover:bg-[#bb0007] rounded-tl-3xl border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white cursor-pointer"
-          onClick={() => {
-            router.push("dashboard/registerForm");
-          }}
         >
           查看报名表
-        </div>
-        <div
+        </Link>
+        <Link
+          href={"dashboard/userForm"}
           className="w-[33%] h-[100px] bg-[#890a05] hover:bg-[#bb0007] border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white cursor-pointer"
-          onClick={() => {
-            router.push("dashboard/userForm");
-          }}
         >
           会员管理
-        </div>
-        <div className="w-[33%] h-[100px] bg-[#890a05] hover:bg-[#bb0007]  rounded-tr-3xl border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white cursor-pointer">
+        </Link>
+        <Link
+          href={"dashboard/adminForm"}
+          className="w-[33%] h-[100px] bg-[#890a05] hover:bg-[#bb0007]  rounded-tr-3xl border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white cursor-pointer"
+        >
           员工管理
-        </div>
+        </Link>
         <div className="w-[33%] h-[100px] bg-[#890a05] hover:bg-[#bb0007] rounded-bl-3xl border text-center leading-[100px] text-[2vw] font-formal hover:border-8 hover:leading-[84px] hover:border-white cursor-pointer">
           敬请期待🙈🛠️
         </div>

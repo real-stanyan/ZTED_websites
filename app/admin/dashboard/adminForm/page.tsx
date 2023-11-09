@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function UserForm() {
+export default function AdminForm() {
   const router = useRouter();
   const [admin, setAdmin] = useState({
     email: "",
     name: "",
     position: "",
   });
-  const [userForm, setUserForm] = useState<UserForm[]>([]);
+  const [adminForm, setAdminForm] = useState<AdminForm[]>([]);
 
   useEffect(() => {
     const admin = localStorage.getItem("adminInfo");
@@ -20,16 +20,16 @@ export default function UserForm() {
       if (admin_.position !== "1") {
         router.push("/dashboard");
       }
-      getUserForm(admin_.email);
+      getAdminForm(admin_.email);
     }
     if (!admin) {
       router.push("/");
     }
   }, []);
 
-  const getUserForm = async (email: string) => {
+  const getAdminForm = async (email: string) => {
     const res = await fetch(
-      `http://localhost:8080/ZTED/allUsers?adminEmail=${email}`,
+      `http://localhost:8080/ZTED/allAdmins?adminEmail=${email}`,
       {
         method: "GET",
         headers: {
@@ -39,12 +39,12 @@ export default function UserForm() {
     );
     const data = await res.json();
     console.log(data);
-    setUserForm(data);
+    setAdminForm(data);
   };
 
   const handleDelete = async (email: string) => {
     const res = await fetch(
-      `http://localhost:8080/ZTED/user/${email}?adminEmail=${admin.email}`,
+      `http://localhost:8080/ZTED/administrator/${email}?adminEmail=${admin.email}`,
       {
         method: "DELETE",
         headers: {
@@ -54,7 +54,7 @@ export default function UserForm() {
     );
     console.log(res);
 
-    getUserForm(admin.email);
+    getAdminForm(admin.email);
   };
 
   return (
@@ -62,16 +62,16 @@ export default function UserForm() {
       <thead>
         <tr>
           <th className="font-formal border border-slate-600 bg-black text-white p-2">
-            姓名🤠
+            ID
           </th>
           <th className="font-formal border border-slate-600 bg-black text-white p-2">
-            手机号码📱
+            姓名🤠
           </th>
           <th className="font-formal border border-slate-600 bg-black text-white p-2">
             邮箱📮
           </th>
           <th className="font-formal border border-slate-600 bg-black text-white p-2">
-            上次登录时间⌚️
+            权限🔑
           </th>
           <th className="font-formal border border-slate-600 bg-black text-white p-2">
             操作
@@ -79,22 +79,22 @@ export default function UserForm() {
         </tr>
       </thead>
       <tbody>
-        {userForm.map((item, index) => (
+        {adminForm.map((item, index) => (
           <tr
-            key={item.email}
+            key={item.id}
             className={`text-center ${index % 2 && "bg-black/10"}`}
           >
             <td className="font-formal border border-slate-600">
-              {item.name || "无记录"}
+              {item.id || "无记录"}
             </td>
             <td className="font-formal border border-slate-600">
-              {item.phoneNum || "无记录"}
+              {item.name || "无记录"}
             </td>
             <td className="font-formal border border-slate-600">
               {item.email || "无记录"}
             </td>
             <td className="font-formal border border-slate-600">
-              {item.lastActivityTime || "无记录"}
+              {item.position || "无记录"}
             </td>
             <td
               className="hover:bg-[red] hover:text-white cursor-pointer  border border-slate-600"

@@ -10,6 +10,11 @@ export default function RegisterForm() {
     name: "",
     position: "",
   });
+  const [messageBox, setMessageBox] = useState({
+    show: false,
+    message: "",
+    bgColor: "",
+  });
   const [registerForm, setRegisterForm] = useState<RegisterForm[]>([]);
   useEffect(() => {
     const admin = localStorage.getItem("adminInfo");
@@ -28,6 +33,12 @@ export default function RegisterForm() {
     }
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setMessageBox({ ...messageBox, show: false });
+    }, 4000);
+  }, [messageBox]);
+
   const getRegisterForm = async (email: string) => {
     const res = await fetch(
       `http://localhost:8080/ZTED/registerform?adminEmail=${email}`,
@@ -43,32 +54,111 @@ export default function RegisterForm() {
     setRegisterForm(data);
   };
 
+  const handleDelete = async (id: number) => {
+    const res = await fetch(
+      `http://localhost:8080/ZTED/registration/${id}?adminEmail=${admin.email}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(res);
+
+    if (res.ok) {
+      setMessageBox({
+        show: true,
+        message: "删除成功",
+        bgColor: "bg-green-400",
+      });
+    } else {
+      setMessageBox({
+        show: true,
+        message: "删除失败",
+        bgColor: "bg-red-400",
+      });
+    }
+
+    getRegisterForm(admin.email);
+  };
+
   return (
-    <table className="w-full table-auto text-black">
-      <thead>
-        <tr>
-          <th className="font-formal">姓名🤠</th>
-          <th className="font-formal">手机号码📱</th>
-          <th className="font-formal">企业名称🏢</th>
-          <th className="font-formal">您的职位👨‍💻</th>
-          <th className="font-formal">公司年营收💵</th>
-          <th className="font-formal">课程类型🗂️</th>
-          <th className="font-formal">操作</th>
-        </tr>
-      </thead>
-      <tbody>
-        {registerForm.map((item) => (
-          <tr key={item.id} className="text-center">
-            <td className="font-formal">{item.name || "无记录"}</td>
-            <td className="font-formal">{item.phoneNum || "无记录"}</td>
-            <td className="font-formal">{item.companyName || "无记录"}</td>
-            <td className="font-formal">{item.position || "无记录"}</td>
-            <td className="font-formal">{item.annualRevenue || "无记录"}</td>
-            <td className="font-formal">{item.classType || "无记录"}</td>
-            <td className="hover:underline cursor-pointer">删除❌</td>
+    <>
+      {/* Message Box */}
+      <div
+        className={`w-[15vw] p-[1vw] text-[1vw] fixed left-[calc(50%)] ${
+          !messageBox.show
+            ? "top-[-6vw]"
+            : messageBox.bgColor
+            ? messageBox.bgColor
+            : "top-6vw"
+        } 
+        p-[1vw] text-center text-black text-[2vw] font-formal border-4 rounded-md border-white transition-all duration-1000 ease-in-out`}
+      >
+        {messageBox.message}
+      </div>
+      {/* Table */}
+      <table className="w-full table-auto text-black border-collapse border border-slate-500">
+        <thead>
+          <tr>
+            <th className="font-formal border border-slate-600 bg-black text-white p-2">
+              姓名🤠
+            </th>
+            <th className="font-formal border border-slate-600 bg-black text-white p-2">
+              手机号码📱
+            </th>
+            <th className="font-formal border border-slate-600 bg-black text-white p-2">
+              企业名称🏢
+            </th>
+            <th className="font-formal border border-slate-600 bg-black text-white p-2">
+              您的职位👨‍💻
+            </th>
+            <th className="font-formal border border-slate-600 bg-black text-white p-2">
+              公司年营收💵
+            </th>
+            <th className="font-formal border border-slate-600 bg-black text-white p-2">
+              课程类型🗂️
+            </th>
+            <th className="font-formal border border-slate-600 bg-black text-white p-2">
+              操作
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {registerForm.map((item) => (
+            <tr
+              key={item.id}
+              className={`text-center ${item.id % 2 && "bg-black/10"}`}
+            >
+              <td className="font-formal border border-slate-600">
+                {item.name || "无记录"}
+              </td>
+              <td className="font-formal border border-slate-600">
+                {item.phoneNum || "无记录"}
+              </td>
+              <td className="font-formal border border-slate-600">
+                {item.companyName || "无记录"}
+              </td>
+              <td className="font-formal border border-slate-600">
+                {item.position || "无记录"}
+              </td>
+              <td className="font-formal border border-slate-600">
+                {item.annualRevenue || "无记录"}
+              </td>
+              <td className="font-formal border border-slate-600">
+                {item.classType || "无记录"}
+              </td>
+              <td
+                className="hover:bg-[red] hover:text-white cursor-pointer  border border-slate-600"
+                onClick={() => handleDelete(item.id)}
+              >
+                删除❌
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }

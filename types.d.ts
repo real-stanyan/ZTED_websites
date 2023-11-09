@@ -68,3 +68,10 @@ type UserForm = {
   email: string;
   lastActivityTime: string;
 };
+
+type AdminForm = {
+  id: number;
+  name: string;
+  email: string;
+  position: string;
+};
