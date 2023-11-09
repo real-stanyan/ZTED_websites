@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Admin() {
@@ -33,6 +33,10 @@ export default function Admin() {
 
   useEffect(() => {
     localStorage.removeItem("userInfo");
+    const admin = localStorage.getItem("adminInfo");
+    if (admin) {
+      router.push("/admin/dashboard");
+    }
   }, []);
 
   const handleLogin = async () => {

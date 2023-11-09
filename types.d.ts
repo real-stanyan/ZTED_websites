@@ -50,3 +50,21 @@ type Admin = {
   email: string;
   position: string;
 };
+
+type RegisterForm = {
+  id: number;
+  name: string;
+  registerEmail: string;
+  phoneNum: string;
+  companyName: string;
+  annualRevenue: string;
+  classType: string;
+  position: string;
+};
+
+type UserForm = {
+  name: string;
+  phoneNum: string;
+  email: string;
+  lastActivityTime: string;
+};
