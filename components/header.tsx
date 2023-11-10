@@ -160,7 +160,7 @@ export default function Header() {
   return (
     <>
       {/* Message Box */}
-      <div
+      {/* <div
         className={`w-[15vw] p-[1vw] text-[1vw] fixed left-[calc(50%)] ${
           !messageBox.show
             ? "top-[-6vw]"
@@ -171,7 +171,7 @@ export default function Header() {
         p-[1vw] text-center text-black text-[2vw] font-formal border-4 rounded-md border-white transition-all duration-1000 ease-in-out`}
       >
         {messageBox.message}
-      </div>
+      </div> */}
       {/* header */}
       <div
         className={`w-full md:h-[4vw] px-2 flex justify-between bg-header-bg bg-cover truncate transition-all duration-500 ease-in-out`}

@@ -1,9 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import userAuth from "@/util/userAuth";
 
 export default function Enroll() {
   const phoneNumRegex = /^1[3456789]\d{9}$/;
+  const router = useRouter();
   const [error, setError] = useState("");
   const [userinfo, setUserinfo] = useState<UserInfo>({
     registerEmail: "",
@@ -25,11 +28,12 @@ export default function Enroll() {
   });
 
   useEffect(() => {
-    const user = localStorage.getItem("userInfo");
-    if (user) {
-      const user_ = JSON.parse(user);
-
-      setUserinfo({ ...userinfo, registerEmail: user_.email });
+    const res = userAuth();
+    if (res) {
+      setUserEmail(res.email);
+      setUserinfo({ ...userinfo, registerEmail: res.email });
+    } else {
+      router.push("/user");
     }
   }, []);
 
@@ -95,7 +99,7 @@ export default function Enroll() {
             name="name"
             className={`w-full h-[50px] p-[5px] border ${
               inputError.name ? "border-red-500" : "border-black"
-            }  rounded bg-transparent text-black my-[1vw]`}
+            }  rounded bg-transparent text-black my-[1vw] font-formal`}
             placeholder="姓名"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleInputChange(e)
@@ -111,7 +115,7 @@ export default function Enroll() {
             name="phoneNum"
             className={`w-full h-[50px] p-[5px] border ${
               inputError.phoneNum ? "border-red-500" : "border-black"
-            }  rounded bg-transparent text-black my-[1vw]`}
+            }  rounded bg-transparent text-black my-[1vw] font-formal`}
             placeholder="手机号码"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleInputChange(e)
@@ -127,7 +131,7 @@ export default function Enroll() {
             name="companyName"
             className={`w-full h-[50px] p-[5px] border ${
               inputError.companyName ? "border-red-500" : "border-black"
-            } rounded bg-transparent text-black my-[1vw]`}
+            } rounded bg-transparent text-black my-[1vw] font-formal`}
             placeholder="企业名称"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleInputChange(e)
@@ -143,7 +147,7 @@ export default function Enroll() {
             id="position"
             className={`w-full h-[50px] p-[5px] border ${
               inputError.position ? "border-red-500" : "border-black"
-            } rounded bg-transparent text-black my-[1vw]`}
+            } rounded bg-transparent text-black my-[1vw] font-formal`}
             onChange={handleInputChange}
           >
             <option value="">您的职位</option>
@@ -161,7 +165,7 @@ export default function Enroll() {
             id="annualRevenue"
             className={`w-full h-[50px] p-[5px] border ${
               inputError.annualRevenue ? "border-red-500" : "border-black"
-            } rounded bg-transparent text-black my-[1vw]`}
+            } rounded bg-transparent text-black my-[1vw] font-formal`}
             onChange={handleInputChange}
           >
             <option value="">公司年营收</option>
@@ -181,7 +185,7 @@ export default function Enroll() {
             id="learning_experience"
             className={`w-full h-[50px] p-[5px] border ${
               inputError.classType ? "border-red-500" : "border-black "
-            } rounded bg-transparent text-black my-[1vw]`}
+            } rounded bg-transparent text-black my-[1vw] font-formal`}
             onChange={handleInputChange}
           >
             <option value="">课程类型</option>
