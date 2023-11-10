@@ -7,7 +7,7 @@ import Link from "next/link";
 
 // import { useRouter } from "next/navigation";
 
-export default function page() {
+export default function Dashboard() {
   const router = useRouter();
   const [admin, setAdmin] = useState({
     email: "",
