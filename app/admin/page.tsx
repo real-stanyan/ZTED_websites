@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Admin() {
+  const emailRegex = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+$/;
   const router = useRouter();
   const [page, setPage] = useState("login");
   const [loginError, setLoginError] = useState("");
@@ -40,6 +41,16 @@ export default function Admin() {
   }, []);
 
   const handleLogin = async () => {
+    if (adminLogin.email.length === 0) {
+      setLoginError("邮箱不能为空");
+      setLoginInputError({ ...loginInputError, email: true });
+      return;
+    }
+    if (adminLogin.password.length === 0) {
+      setLoginError("密码不能为空");
+      setLoginInputError({ ...loginInputError, password: true });
+      return;
+    }
     // 注意 await 关键字的使用
     const res = await fetch("http://localhost:8080/ZTED/administrator/login", {
       method: "POST",
@@ -72,6 +83,36 @@ export default function Admin() {
   };
 
   const handleRegister = async () => {
+    if (adminRegister.name.length <= 2) {
+      setRegisterError("名称不能少于两个字");
+      setRegisterInputError({ ...registerInputError, name: true });
+      return;
+    }
+
+    if (emailRegex.test(adminRegister.email) === false) {
+      setRegisterError("邮箱格式不正确");
+      setRegisterInputError({ ...registerInputError, email: true });
+      return;
+    }
+
+    if (adminRegister.password.length <= 5) {
+      setRegisterError("密码不能少于5位");
+      setRegisterInputError({ ...registerInputError, password: true });
+      return;
+    }
+
+    if (adminRegister.confirmPassword !== adminRegister.password) {
+      setRegisterError("两次输入密码不一致");
+      setRegisterInputError({ ...registerInputError, confirmPassword: true });
+      return;
+    }
+
+    if (adminRegister.position.length === 0) {
+      setRegisterError("权限不能为空");
+      setRegisterInputError({ ...registerInputError, position: true });
+      return;
+    }
+
     // 注意 await 关键字的使用
     const res = await fetch(
       "http://localhost:8080/ZTED/administrator/register",
@@ -94,7 +135,7 @@ export default function Admin() {
           </h1>
           <div className="w-[70%] md:w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] font-formal"
               type="text"
               placeholder="用户名"
               onChange={(e) =>
@@ -104,7 +145,7 @@ export default function Admin() {
           </div>
           <div className="w-[70%] md:w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] focus:outline-none"
+              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] focus:outline-none font-formal"
               type="password"
               placeholder="密码"
               onChange={(e) =>
@@ -129,7 +170,9 @@ export default function Admin() {
           <h1 className="text-black text-[4vw] my-[2vw]">管理员注册</h1>{" "}
           <div className="w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
+              className={`w-full h-[50px] p-[5px] border ${
+                registerInputError.name ? "border-red-500" : "border-black"
+              } rounded bg-transparent text-black my-[1vw] font-formal`}
               type="text"
               placeholder="名称"
               onChange={(e) => {
@@ -139,7 +182,9 @@ export default function Admin() {
           </div>
           <div className="w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
+              className={`w-full h-[50px] p-[5px] border ${
+                registerInputError.email ? "border-red-500" : "border-black"
+              } rounded bg-transparent text-black my-[1vw] font-formal`}
               type="text"
               placeholder="邮箱"
               onChange={(e) => {
@@ -149,7 +194,9 @@ export default function Admin() {
           </div>
           <div className="w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
+              className={`w-full h-[50px] p-[5px] border ${
+                registerInputError.password ? "border-red-500" : "border-black"
+              }  rounded bg-transparent text-black my-[1vw] font-formal`}
               type="password"
               placeholder="密码"
               onChange={(e) => {
@@ -162,7 +209,11 @@ export default function Admin() {
           </div>
           <div className="w-[50%]">
             <input
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
+              className={`w-full h-[50px] p-[5px] border ${
+                registerInputError.confirmPassword
+                  ? "border-red-500"
+                  : "border-black"
+              }  rounded bg-transparent text-black my-[1vw] font-formal`}
               type="password"
               placeholder="确认密码"
               onChange={(e) => {
@@ -177,7 +228,9 @@ export default function Admin() {
             <select
               name="learning_experience"
               id="learning_experience"
-              className="w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw]"
+              className={`w-full h-[50px] p-[5px] border ${
+                registerInputError.position ? "border-red-500" : "border-black"
+              }  rounded bg-transparent text-black my-[1vw] font-formal`}
               onChange={(e) => {
                 setAdminRegister({
                   ...adminRegister,

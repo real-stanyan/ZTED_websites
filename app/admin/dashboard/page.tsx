@@ -1,11 +1,34 @@
-import React from "react";
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
 // import { useRouter } from "next/navigation";
 
 export default function page() {
-  // const router = useRouter();
+  const router = useRouter();
+  const [admin, setAdmin] = useState({
+    email: "",
+    name: "",
+    position: "",
+  });
+
+  useEffect(() => {
+    const admin = localStorage.getItem("adminInfo");
+    if (admin) {
+      const admin_ = JSON.parse(admin);
+      setAdmin(admin_);
+      if (admin_.position !== "1") {
+        router.push("/dashboard");
+      }
+    }
+    if (!admin) {
+      router.push("/");
+    }
+  }, []);
+
   return (
     <div className="w-full h-[90vh] flex flex-col items-center">
       <h1 className="font-formal text-[black] text-center text-[3vw] my-[2vw]">

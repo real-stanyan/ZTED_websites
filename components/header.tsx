@@ -7,7 +7,6 @@ import Image from "next/image";
 
 import { RiSearchLine } from "react-icons/ri";
 import { HiMenu } from "react-icons/hi";
-import { set } from "mongoose";
 
 export default function Header() {
   const router = useRouter();
@@ -72,9 +71,6 @@ export default function Header() {
         email: user_.email,
         time: user_.loginTime,
       });
-
-      // setCurrentUser({ name, email });
-      // console.log(currentUser);
     }
 
     if (admin) {
@@ -134,6 +130,11 @@ export default function Header() {
   const handleLogout = () => {
     localStorage.removeItem("userInfo");
     setIsLogin(false);
+
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
+
     setMessageBox({
       show: true,
       message: "登出成功",
@@ -144,6 +145,11 @@ export default function Header() {
   const handleAdminLogout = () => {
     localStorage.removeItem("adminInfo");
     setIsAdmin(false);
+
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
+
     setMessageBox({
       show: true,
       message: "登出成功",
@@ -226,11 +232,13 @@ export default function Header() {
             </div>
           ) : (
             <div
-              className={`flex cursor-pointer mr-[1vw]}`}
+              className={`flex cursor-pointer mr-[4vw]}`}
               onClick={() => router.push("/user")}
             >
               {/* <BiSolidUser color="black" size="30" /> */}
-              <h1 className="align-middle hover:underline">用户注册</h1>
+              <h1 className="align-middle hover:underline mr-[2vw] font-formal">
+                用户登陆
+              </h1>
             </div>
           )}
           {/* {isAdmin ? (
@@ -255,7 +263,7 @@ export default function Header() {
             <RiSearchLine color="black" className="absolute left-2" />
             <input
               type="text"
-              className="w-[10vw] bg-white/50 rounded-lg text-black pl-8 focus:outline-none"
+              className="w-[10vw] bg-white/50 rounded-lg text-black pl-8 focus:outline-none font-formal"
               onKeyUp={handleSearch}
             />
           </div>

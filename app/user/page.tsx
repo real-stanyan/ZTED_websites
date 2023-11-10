@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { set } from "mongoose";
 
 export default function UserRegistration() {
+  const emailRegex = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+$/;
+  const phoneNumRegex = /^1[3456789]\d{9}$/;
   const router = useRouter();
   const [page, setPage] = useState("login");
   const [registerError, setRegisterError] = useState("");
@@ -82,16 +83,16 @@ export default function UserRegistration() {
 
   // 注册Function
   const handleRegister = async () => {
-    if (userRegister.name === "") {
-      setRegisterError("请输入姓名");
+    if (userRegister.name.length <= 2) {
+      setRegisterError("姓名不能少于两个字");
       return;
     }
-    if (userRegister.email === "") {
-      setRegisterError("请输入邮箱");
+    if (emailRegex.test(userRegister.email) === false) {
+      setRegisterError("邮箱格式不正确");
       return;
     }
-    if (userRegister.phoneNum === "") {
-      setRegisterError("请输入手机号");
+    if (phoneNumRegex.test(userRegister.phoneNum) === false) {
+      setRegisterError("手机号格式不正确");
       return;
     }
     if (userRegister.password === "") {
