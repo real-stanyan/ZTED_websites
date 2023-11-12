@@ -1,9 +1,13 @@
 "use client";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setAdmin } from "@/app/GlobalRedux/Features/adminSlice";
+import { setMessage } from "../GlobalRedux/Features/messageBoxSlice";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { set } from "mongoose";
 
 export default function Admin() {
+  const dispatch = useDispatch();
   const emailRegex = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+$/;
   const router = useRouter();
   const [page, setPage] = useState("login");
@@ -62,13 +66,25 @@ export default function Admin() {
       setLoginError("");
       const adminInfo = await res.json();
       console.log(adminInfo);
+      dispatch(
+        setAdmin({
+          name: adminInfo.currentUser,
+          email: adminInfo.email,
+          position: adminInfo.position,
+        })
+      );
+      dispatch(
+        setMessage({
+          message: "管理员登陆成功",
+          type: "success",
+        })
+      );
       const adminInfo_ = JSON.stringify(adminInfo);
+      console.log(adminInfo_);
+
       localStorage.setItem("adminInfo", adminInfo_);
 
       router.push("/admin/dashboard");
-      setTimeout(() => {
-        location.reload();
-      }, 1000);
     }
 
     if (res.status === 400) {

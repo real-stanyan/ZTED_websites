@@ -1,9 +1,12 @@
 "use client";
 
+import { useDispatch } from "react-redux";
+import { setMessage } from "@/app/GlobalRedux/Features/messageBoxSlice";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function AdminForm() {
+  const dispatch = useDispatch();
   const router = useRouter();
   const [admin, setAdmin] = useState({
     email: "",
@@ -53,6 +56,8 @@ export default function AdminForm() {
       }
     );
     console.log(res);
+
+    dispatch(setMessage({ message: `${email} 删除成功`, type: "success" }));
 
     getAdminForm(admin.email);
   };

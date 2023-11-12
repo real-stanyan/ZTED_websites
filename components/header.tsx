@@ -1,5 +1,8 @@
 "use client";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setMessage } from "@/app/GlobalRedux/Features/messageBoxSlice";
+import { setUser } from "@/app/GlobalRedux/Features/userSlice";
+import { setAdmin } from "@/app/GlobalRedux/Features/adminSlice";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -7,8 +10,21 @@ import Image from "next/image";
 
 import { RiSearchLine } from "react-icons/ri";
 import { HiMenu } from "react-icons/hi";
+import { RootState } from "@/app/GlobalRedux/store";
 
 export default function Header() {
+  const user: any = useSelector((state: RootState) => state.user.name);
+  const admin: any = useSelector((state: RootState) => state.admin.name);
+  const message: any = useSelector(
+    (state: RootState) => state.messageBox.message
+  );
+  const messageType: any = useSelector(
+    (state: RootState) => state.messageBox.type
+  );
+  console.log(message);
+  console.log(messageType);
+
+  const dispatch = useDispatch();
   const router = useRouter();
   const [MobileNav, setMobileNav] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
@@ -23,11 +39,7 @@ export default function Header() {
     email: "",
     position: "",
   });
-  const [messageBox, setMessageBox] = useState({
-    show: false,
-    message: "",
-    bgColor: "",
-  });
+  const [showMessageBox, setShowMessageBox] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,11 +67,6 @@ export default function Header() {
 
         localStorage.removeItem("userInfo");
         setIsLogin(false);
-        setMessageBox({
-          show: true,
-          message: "登入成功",
-          bgColor: "bg-green-400",
-        });
       } else {
         console.log("user still login");
         setIsLogin(true);
@@ -83,11 +90,6 @@ export default function Header() {
         console.log("admin expired");
         localStorage.removeItem("adminInfo");
         setIsAdmin(false);
-        setMessageBox({
-          show: true,
-          message: "登入成功",
-          bgColor: "bg-green-400",
-        });
       } else {
         setIsAdmin(true);
       }
@@ -105,7 +107,7 @@ export default function Header() {
     function isUserExpired() {
       const user = localStorage.getItem("userInfo");
     }
-    isUserExpired;
+    isUserExpired();
 
     // 当组件卸载时移除事件监听器
     return () => {
@@ -114,10 +116,11 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    setShowMessageBox(true);
     setTimeout(() => {
-      setMessageBox({ ...messageBox, show: false });
-    }, 4000);
-  }, [messageBox]);
+      setShowMessageBox(false);
+    }, 2000);
+  }, [message]);
 
   const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -130,48 +133,30 @@ export default function Header() {
   const handleLogout = () => {
     localStorage.removeItem("userInfo");
     setIsLogin(false);
-
-    setTimeout(() => {
-      location.reload();
-    }, 1000);
-
-    setMessageBox({
-      show: true,
-      message: "登出成功",
-      bgColor: "bg-green-400",
-    });
+    dispatch(setUser({ name: "", email: "", loginTime: "" }));
+    dispatch(setMessage({ message: `登出成功`, type: "success" }));
   };
 
   const handleAdminLogout = () => {
     localStorage.removeItem("adminInfo");
+    router.push("/");
     setIsAdmin(false);
-
-    setTimeout(() => {
-      location.reload();
-    }, 1000);
-
-    setMessageBox({
-      show: true,
-      message: "登出成功",
-      bgColor: "bg-green-400",
-    });
+    dispatch(setAdmin({ name: "", email: "", position: "" }));
+    dispatch(setMessage({ message: "管理员登出成功", type: "success" }));
   };
 
   return (
     <>
       {/* Message Box */}
-      {/* <div
-        className={`w-[15vw] p-[1vw] text-[1vw] fixed left-[calc(50%)] ${
-          !messageBox.show
-            ? "top-[-6vw]"
-            : messageBox.bgColor
-            ? messageBox.bgColor
-            : "top-0"
-        } 
-        p-[1vw] text-center text-black text-[2vw] font-formal border-4 rounded-md border-white transition-all duration-1000 ease-in-out`}
+      <div
+        className={`flex justify-center fixed left-[calc(50%)] p-[1vw] mt-[1vw] ${
+          showMessageBox ? "flex" : "hidden"
+        } ${
+          messageType === "success" ? "bg-green-400" : "bg-red-400"
+        } text-black text-[1.5vw] font-formal border-2 rounded-md transition-all duration-1000 ease-in-out`}
       >
-        {messageBox.message}
-      </div> */}
+        {message}
+      </div>
       {/* header */}
       <div
         className={`w-full md:h-[4vw] px-2 flex justify-between bg-header-bg bg-cover truncate transition-all duration-500 ease-in-out`}
@@ -195,9 +180,9 @@ export default function Header() {
         </div>
         <div className="flex items-center text-black">
           {/* 用户注册 */}
-          {isLogin ? (
+          {user ? (
             <div className="group w-[10vw] font-formal text-[1.5vw] mr-[1vw]">
-              {currentUser.name}老板您好👋
+              {user}老板您好👋
               <div className="w-[10vw] absolute border-2 bg-white group-hover:block hidden duration-1000">
                 <div
                   className="font-formal text-center cursor-pointer"
@@ -207,11 +192,9 @@ export default function Header() {
                 </div>
               </div>
             </div>
-          ) : isAdmin ? (
+          ) : admin ? (
             <div className="group w-[10vw] font-formal text-[1.5vw] mr-[1vw] ">
-              <span className="text-[red] font-formal">
-                {currentAdmin.name}
-              </span>
+              <span className="text-[red] font-formal">{admin}</span>
               老板您好👋
               <div className="w-[10vw] absolute border-2 bg-white group-hover:block hidden duration-1000 ">
                 <div
@@ -241,22 +224,6 @@ export default function Header() {
               </h1>
             </div>
           )}
-          {/* {isAdmin ? (
-            <div className="group w-[10vw] font-formal text-[1.5vw] mr-[1vw] ">
-              <span className="text-[red] font-formal">
-                {currentAdmin.name}
-              </span>
-              老板您好👋
-              <div className="w-[10vw] absolute border-2 bg-white group-hover:block hidden duration-1000">
-                <div
-                  className="font-formal text-center cursor-pointer"
-                  onClick={handleLogout}
-                >
-                  登出
-                </div>
-              </div>
-            </div>
-          ) : null} */}
 
           {/* search bar */}
           <div className="relative hidden md:flex items-center">

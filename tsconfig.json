@@ -29,7 +29,10 @@
     ".next/types/**/*.ts",
     "utils/image_exporter.js",
     "lib/dbConnect.js",
-    "app/api/user/route.js"
+    "app/api/user/route.js",
+    "store/messageSlice.js",
+    "store/store.js",
+    "pages/_app.js"
   ],
   "exclude": ["node_modules"]
 }

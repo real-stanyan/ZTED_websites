@@ -75,3 +75,8 @@ type AdminForm = {
   email: string;
   position: string;
 };
+
+type Message = {
+  message: string;
+  borderColor: string;
+};

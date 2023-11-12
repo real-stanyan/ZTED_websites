@@ -1,11 +1,15 @@
 "use client";
-
+import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { setMessage } from "@/app/GlobalRedux/Features/messageBoxSlice";
+import { setUser } from "@/app/GlobalRedux/Features/userSlice";
+import { set } from "mongoose";
 
 export default function UserRegistration() {
   const emailRegex = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+$/;
   const phoneNumRegex = /^1[3456789]\d{9}$/;
+  const dispatch = useDispatch();
   const router = useRouter();
   const [page, setPage] = useState("login");
   const [registerError, setRegisterError] = useState("");
@@ -114,7 +118,7 @@ export default function UserRegistration() {
       setRegisterError("");
       const userInfo = await res.json();
       console.log(userInfo);
-      // alert(`注册成功, 欢迎您 ${userInfo.name}`);
+      dispatch(setMessage({ message: "注册成功!", type: "success" }));
       setPage("login");
     }
     if (res.status === 400) {
@@ -148,16 +152,20 @@ export default function UserRegistration() {
     // ```登陆成功```
     if (res.status === 200) {
       const userInfo = await res.json();
-      console.log(userInfo);
+      dispatch(setMessage({ message: "登陆成功!", type: "success" }));
+      dispatch(
+        setUser({
+          name: userInfo.Username,
+          email: userInfo.email,
+          loginTime: userInfo.loginTime,
+        })
+      );
 
+      console.log(userInfo);
       const userInfoString = JSON.stringify(userInfo);
       localStorage.setItem("userInfo", userInfoString);
       setLoginError("");
-      alert(`登陆成功, 欢迎您 ${userInfo.Username}`);
       router.push("/");
-      setTimeout(() => {
-        location.reload();
-      }, 1000);
     }
     if (res.status === 400) {
       setLoginError("用户名或密码错误");

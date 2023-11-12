@@ -1,13 +1,16 @@
 "use client";
 
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { RootState } from "@/app/GlobalRedux/store";
 
 // import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
+  // const admin: any = useSelector((state: RootState) => state.admin.name);
   const router = useRouter();
   const [admin, setAdmin] = useState({
     email: "",

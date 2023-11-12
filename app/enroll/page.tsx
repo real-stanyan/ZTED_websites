@@ -1,11 +1,14 @@
 "use client";
 
+import { useDispatch } from "react-redux";
+import { setMessage } from "../GlobalRedux/Features/messageBoxSlice";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import userAuth from "@/util/userAuth";
 
 export default function Enroll() {
-  const phoneNumRegex = /^1[3456789]\d{9}$/;
+  const dispatch = useDispatch();
+  // const phoneNumRegex = /^1[3456789]\d{9}$/;
   const router = useRouter();
   const [error, setError] = useState("");
   const [userinfo, setUserinfo] = useState<UserInfo>({
@@ -50,11 +53,11 @@ export default function Enroll() {
       setInputError({ ...inputError, name: true });
       return;
     }
-    if (phoneNumRegex.test(userinfo.phoneNum) === false) {
-      setError("手机号码格式不正确");
-      setInputError({ ...inputError, phoneNum: true });
-      return;
-    }
+    // if (phoneNumRegex.test(userinfo.phoneNum) === false) {
+    //   setError("手机号码格式不正确");
+    //   setInputError({ ...inputError, phoneNum: true });
+    //   return;
+    // }
     if (userinfo.companyName.length <= 2) {
       setError("企业名称不能少于两个字");
       setInputError({ ...inputError, companyName: true });
@@ -83,6 +86,47 @@ export default function Enroll() {
     });
 
     console.log(res);
+    if (res.status === 200) {
+      dispatch(
+        setMessage({
+          type: "success",
+          message: "报名成功",
+        })
+      );
+      setUserinfo({
+        registerEmail: "",
+        name: "",
+        phoneNum: "",
+        companyName: "",
+        position: "",
+        annualRevenue: "",
+        classType: "",
+      });
+    }
+    if (res.status === 404) {
+      dispatch(
+        setMessage({
+          type: "error",
+          message: "报名失败: 用户未找到",
+        })
+      );
+    }
+    if (res.status === 429) {
+      dispatch(
+        setMessage({
+          type: "error",
+          message: "报名失败: 一个账号最多提交5次报名信息",
+        })
+      );
+    }
+    if (res.status === 400) {
+      dispatch(
+        setMessage({
+          type: "error",
+          message: "报名失败: 请重新登陆",
+        })
+      );
+    }
   };
 
   return (

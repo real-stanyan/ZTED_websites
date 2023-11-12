@@ -1,9 +1,12 @@
 "use client";
 
+import { useDispatch } from "react-redux";
+import { setMessage } from "@/app/GlobalRedux/Features/messageBoxSlice";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
+  const dispatch = useDispatch();
   const router = useRouter();
   const [admin, setAdmin] = useState({
     email: "",
@@ -67,17 +70,9 @@ export default function RegisterForm() {
     console.log(res);
 
     if (res.ok) {
-      setMessageBox({
-        show: true,
-        message: "删除成功",
-        bgColor: "bg-green-400",
-      });
+      dispatch(setMessage({ message: `${id} 删除成功`, type: "success" }));
     } else {
-      setMessageBox({
-        show: true,
-        message: "删除失败",
-        bgColor: "bg-red-400",
-      });
+      dispatch(setMessage({ message: "删除失败", type: "error" }));
     }
 
     getRegisterForm(admin.email);
