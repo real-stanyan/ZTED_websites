@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { setMessage } from "@/app/GlobalRedux/Features/messageBoxSlice";
 import { setUser } from "@/app/GlobalRedux/Features/userSlice";
-import { set } from "mongoose";
 
 export default function UserRegistration() {
   const emailRegex = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+$/;

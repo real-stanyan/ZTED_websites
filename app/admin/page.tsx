@@ -140,6 +140,17 @@ export default function Admin() {
     );
 
     console.log(res);
+    if (res.status === 200) {
+      setRegisterError("");
+      setPage("login");
+      dispatch(
+        setMessage({
+          message: "管理员注册成功",
+          type: "success",
+        })
+      );
+      router.push("/admin");
+    }
   };
 
   return (

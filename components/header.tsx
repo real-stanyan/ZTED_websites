@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setMessage } from "@/app/GlobalRedux/Features/messageBoxSlice";
 import { setUser } from "@/app/GlobalRedux/Features/userSlice";
 import { setAdmin } from "@/app/GlobalRedux/Features/adminSlice";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,6 +11,7 @@ import Image from "next/image";
 import { RiSearchLine } from "react-icons/ri";
 import { HiMenu } from "react-icons/hi";
 import { RootState } from "@/app/GlobalRedux/store";
+import { set } from "mongoose";
 
 export default function Header() {
   const user: any = useSelector((state: RootState) => state.user.name);
@@ -69,6 +70,7 @@ export default function Header() {
         setIsLogin(false);
       } else {
         console.log("user still login");
+        dispatch(setUser({ name: user_.Username, email: user_.email }));
         setIsLogin(true);
       }
       console.log(user_);
@@ -83,18 +85,18 @@ export default function Header() {
     if (admin) {
       const admin_ = JSON.parse(admin);
 
-      const loginTimeStamp = Date.parse(admin_.loginTime);
-      const nowTimeStamp = Date.now();
-      const timeDiff = nowTimeStamp - loginTimeStamp;
-      if (timeDiff > 10000) {
-        console.log("admin expired");
-        localStorage.removeItem("adminInfo");
-        setIsAdmin(false);
-      } else {
-        setIsAdmin(true);
-      }
-      console.log(admin_);
-
+      // const loginTimeStamp = Date.parse(admin_.loginTime);
+      // const nowTimeStamp = Date.now();
+      // const timeDiff = nowTimeStamp - loginTimeStamp;
+      // if (timeDiff > 10000) {
+      //   console.log("admin expired");
+      //   localStorage.removeItem("adminInfo");
+      //   setIsAdmin(false);
+      // } else {
+      //   setIsAdmin(true);
+      // }
+      // console.log(admin_);
+      dispatch(setAdmin({ name: admin_.currentUser, email: admin_.email }));
       setCurrentAdmin({
         name: admin_.currentUser,
         email: admin_.email,
@@ -148,7 +150,7 @@ export default function Header() {
   return (
     <>
       {/* Message Box */}
-      <div
+      {/* <div
         className={`flex justify-center fixed left-[calc(50%)] p-[1vw] mt-[1vw] ${
           showMessageBox ? "flex" : "hidden"
         } ${
@@ -156,7 +158,24 @@ export default function Header() {
         } text-black text-[1.5vw] font-formal border-2 rounded-md transition-all duration-1000 ease-in-out`}
       >
         {message}
-      </div>
+      </div> */}
+      {showMessageBox && (
+        <div
+          className={`test-[0.5vw] flex justify-center fixed left-[calc(50%)] px-[1vw] mt-[1vw] ${
+            showMessageBox ? "flex" : "hidden"
+          } ${
+            messageType === "success" ? "bg-green-400" : "bg-red-400"
+          } text-black text-[1.5vw] font-formal border-2 rounded-md transition-all duration-1000 ease-in-out`}
+        >
+          {message ? (
+            message
+          ) : (
+            <div className="test-[0.5vw] bg-green-400 mx-[-1vw] my-[-1vw] px-[1vw] flex rounded font-formal">
+              欢迎回来
+            </div>
+          )}
+        </div>
+      )}
       {/* header */}
       <div
         className={`w-full md:h-[4vw] px-2 flex justify-between bg-header-bg bg-cover truncate transition-all duration-500 ease-in-out`}
