@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CourseIntro() {
   return (
@@ -11,41 +12,47 @@ export default function CourseIntro() {
           <div>介</div>
           <div>绍</div>
         </h1>
-        <div className="w-[80%]  h-[10px] flex justify-center items-center bg-[#790511] p-[2vw]  whitespace-nowrap rounded-2xl">
-          立即报名
-        </div>
+        <Link
+          href={"/enroll"}
+          className="group w-[200px] h-[10px] text-[1.5vw] flex justify-center items-center bg-[#790511] p-[2vw]  whitespace-nowrap rounded-2xl cursor-pointer "
+        >
+          <h1 className="group-hover:glowing">立即报名</h1>
+        </Link>
       </div>
       {/* 2 */}
-      <div>
+      <div className="w-[100%] h-[100%] relative hover:w-[150%] duration-300 ease-in-out">
         <Image
           src={"/images/zhuanxing_banner.jpeg"}
           alt="转型班"
-          width={2000}
-          height={2000}
+          layout="fill" // 这会使图片填充整个容器
+          objectFit="cover" // 这会覆盖 object-contain，确保图片沾满整个容器
         />
       </div>
-      <div>
+
+      <div className="w-[100%] h-[100%] relative hover:w-[150%] duration-300 ease-in-out">
         <Image
           src={"/images/guoxue_banner.jpeg"}
           alt="转型班"
-          width={2000}
-          height={2000}
+          layout="fill" // 这会使图片填充整个容器
+          objectFit="cover" // 这会覆盖 object-contain，确保图片沾满整个容器
         />
       </div>
-      <div>
+
+      <div className="w-[100%] h-[100%] relative hover:w-[150%] duration-300 ease-in-out">
         <Image
           src={"/images/jiuxing_banner.jpeg"}
           alt="转型班"
-          width={2000}
-          height={2000}
+          layout="fill" // 这会使图片填充整个容器
+          objectFit="cover" // 这会覆盖 object-contain，确保图片沾满整个容器
         />
       </div>
-      <div>
+
+      <div className="w-[100%] h-[100%] relative hover:w-[150%] duration-300 ease-in-out">
         <Image
           src={"/images/nanmei_banner.jpeg"}
           alt="转型班"
-          width={2000}
-          height={2000}
+          layout="fill" // 这会使图片填充整个容器
+          objectFit="cover" // 这会覆盖 object-contain，确保图片沾满整个容器
         />
       </div>
     </div>

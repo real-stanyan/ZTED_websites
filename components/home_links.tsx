@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function HomeLinks() {
   return (
-    <div className="flex justify-around items-center w-full h-[40vh]">
+    <div className="flex justify-around items-center w-full h-[70vh]">
       <div>
         <Image
           src={"/images/form_icon.png"}

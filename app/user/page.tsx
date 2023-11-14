@@ -178,17 +178,17 @@ export default function UserRegistration() {
   };
 
   return (
-    <div className="flex flex-col items-center h-screen">
+    <div className="flex flex-col items-center h-screen bg-user-bg bg-cover bg-no-repeat">
       {page === "register" && (
-        <>
+        <div className="flex flex-col absolute w-[50vw] top-[10vw] right-[5vw] text-[#EDDABF] justify-center items-center">
           {/* 用户注册Title */}
-          <h1 className="text-black text-[6vw] md:text-[4vw] my-[4vw] md:my-[2vw]">
+          <h1 className="text-[3vw] md:text-[2vw] my-[4vw] md:my-[2vw]">
             用户注册
           </h1>
           {/* 注册姓名 */}
           <div className="w-[70%] md:w-[50%]">
             <input
-              className={`font-formal w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
+              className={`font-formal w-full h-[50px] p-[5px] border border-[#EDDABF] rounded bg-transparent my-[1vw] placeholder:text-[#EDDABF] focus:outline-none ${
                 registerInputError.name ? "border-red-500" : ""
               }`}
               type="text"
@@ -201,7 +201,7 @@ export default function UserRegistration() {
           {/* 注册邮箱 */}
           <div className="w-[70%] md:w-[50%]">
             <input
-              className={`font-formal w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
+              className={`font-formal w-full h-[50px] p-[5px] border border-[#EDDABF] rounded bg-transparent my-[1vw] placeholder:text-[#EDDABF]  focus:outline-none ${
                 registerInputError.email ? "border-red-500" : ""
               }`}
               type="email"
@@ -214,7 +214,7 @@ export default function UserRegistration() {
           {/* 注册手机号 */}
           <div className="w-[70%] md:w-[50%]">
             <input
-              className={`font-formal w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
+              className={`font-formal w-full h-[50px] p-[5px] border border-[#EDDABF] rounded bg-transparent my-[1vw] placeholder:text-[#EDDABF] focus:outline-none ${
                 registerInputError.phoneNum ? "border-red-500" : ""
               }`}
               type="text"
@@ -227,7 +227,7 @@ export default function UserRegistration() {
           {/* 注册密码 */}
           <div className="w-[70%] md:w-[50%]">
             <input
-              className={`font-formal w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
+              className={`font-formal w-full h-[50px] p-[5px] border border-[#EDDABF] rounded bg-transparent  my-[1vw] placeholder:text-[#EDDABF] focus:outline-none ${
                 registerInputError.password ? "border-red-500" : ""
               }`}
               type="password"
@@ -240,7 +240,7 @@ export default function UserRegistration() {
 
           <div className="w-[70%] md:w-[50%]">
             <input
-              className={`font-formal w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
+              className={`font-formal w-full h-[50px] p-[5px] border border-[#EDDABF] rounded bg-transparent  my-[1vw] placeholder:text-[#EDDABF] focus:outline-none ${
                 registerInputError.confirmPassword ? "border-red-500" : ""
               }`}
               type="password"
@@ -261,25 +261,33 @@ export default function UserRegistration() {
             {registerError}
           </div>
           <div
-            className=" w-[50%] md:w-[20%] h-[40px] md:h-[50px] leading-[40px] md:leading-[50px] border border-black text-black text-center rounded hover:text-white hover:bg-black"
+            className=" w-[100%] md:w-[20%] h-[40px] md:h-[50px] leading-[40px] md:leading-[50px] border border-[#EDDABF] text-center rounded hover:bg-[#EDDABF] hover:text-black cursor-pointer"
             onClick={handleRegister}
           >
             注册
           </div>
-        </>
+          <div
+            className="mt-[1vw] hover:underline cursor-pointer text-[1vw]"
+            onClick={() => {
+              setPage("login");
+            }}
+          >
+            登陆
+          </div>
+        </div>
       )}
       {page === "login" && (
-        <>
+        <div className="flex flex-col absolute w-[50vw] top-[14vw] right-[5vw] text-[#EDDABF] justify-center items-center">
           {/* 用户登陆Title */}
-          <h1 className="text-black text-[6vw] md:text-[4vw] my-[4vw] md:my-[2vw]">
+          <h1 className="text-[6vw] md:text-[2vw] my-[4vw] md:my-[2vw]">
             用户登陆
           </h1>
           {/* 登陆邮箱 */}
           <div className="w-[70%] md:w-[50%]">
             <input
-              className={`font-formal w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
+              className={`font-formal w-full h-[50px] p-[5px] border border-[#EDDABF] rounded bg-transparent my-[1vw] placeholder:text-[#EDDABF] ${
                 loginInputError.email ? "border-red-500" : ""
-              }`}
+              } focus:outline-none`}
               type="text"
               placeholder="邮箱"
               onChange={(e) => {
@@ -290,9 +298,9 @@ export default function UserRegistration() {
           {/* 登陆密码 */}
           <div className="w-[70%] md:w-[50%]">
             <input
-              className={`font-formal w-full h-[50px] p-[5px] border border-black rounded bg-transparent text-black my-[1vw] ${
+              className={`font-formal w-full h-[50px] p-[5px] border border-[#EDDABF] rounded bg-transparent my-[1vw] placeholder:text-[#EDDABF] ${
                 loginInputError.password ? "border-red-500" : ""
-              }`}
+              } focus:outline-none`}
               type="text"
               placeholder="密码"
               onChange={(e) => {
@@ -306,18 +314,26 @@ export default function UserRegistration() {
             {loginError}
           </div>
           <div
-            className=" w-[50%] md:w-[20%] h-[40px] md:h-[50px] leading-[40px] md:leading-[50px] border border-black text-black text-center rounded hover:text-white hover:bg-black"
+            className=" w-[100%] md:w-[20%] h-[40px] md:h-[50px] leading-[40px] md:leading-[50px] border border-[#EDDABF] text-center rounded hover:bg-[#EDDABF] hover:text-black"
             onClick={handleLogin}
           >
             登陆
           </div>
-        </>
+          <div
+            className="mt-[2vw] hover:underline cursor-pointer text-[1vw]"
+            onClick={() => {
+              setPage("register");
+            }}
+          >
+            创建账号
+          </div>
+        </div>
       )}
       <p
         className="w-screen text-black cursor-pointer mt-4 text-center hover:underline"
         onClick={() => setPage(page === "login" ? "register" : "login")}
       >
-        {page === "login" ? "创建账号" : "已有账号？登录"}
+        {/* {page === "login" ? <div>创建账号</div> : "已有账号？登录"} */}
       </p>
     </div>
   );

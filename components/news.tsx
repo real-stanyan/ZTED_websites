@@ -2,8 +2,10 @@ import Image from "next/image";
 
 export default function News() {
   return (
-    <>
-      <h1 className="text-[#A92428] text-[4vw] mb-[2vw]">志途·要闻</h1>
+    <div className="w-[100vw] h-[100vh]">
+      <h1 className="text-[#A92428] text-[4vw] mb-[2vw] text-center">
+        志途·要闻
+      </h1>
       <div className="grid gap-4 grid-cols-2 h-[70vh]">
         {/* 行1 */}
         <div className="h-full">
@@ -54,6 +56,6 @@ export default function News() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

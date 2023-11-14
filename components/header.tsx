@@ -127,6 +127,8 @@ export default function Header() {
     if (e.key === "Enter") {
       if (e.currentTarget.value === "123") {
         router.push("/admin");
+      } else {
+        dispatch(setMessage({ message: `搜索功能未完成`, type: "error" }));
       }
     }
   };
@@ -151,7 +153,7 @@ export default function Header() {
       {/* Message Box */}
       {showMessageBox && (
         <div
-          className={`test-[0.5vw] flex justify-center fixed left-[calc(50%)] px-[1vw] mt-[1vw] ${
+          className={` flex justify-center fixed left-[calc(50%)] px-[1vw] mt-[1vw] ${
             showMessageBox ? "flex" : "hidden"
           } ${
             messageType === "success" ? "bg-green-400" : "bg-red-400"
