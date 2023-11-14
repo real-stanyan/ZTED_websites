@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh" className="overflow-x-hidden">
-      <body className="min-w-[100vw] min-h-[100vh] bg-main-bg bg-auto bg-[#f7f7e9] bg-no-repeat bg-bottom">
+      <body className="min-w-[100vw] min-h-[100vh] bg-[#EEEBEA] bg-auto bg-no-repeat bg-bottom">
         <Providers>
           <Header />
           {children}

@@ -11,7 +11,6 @@ import Image from "next/image";
 import { RiSearchLine } from "react-icons/ri";
 import { HiMenu } from "react-icons/hi";
 import { RootState } from "@/app/GlobalRedux/store";
-import { set } from "mongoose";
 
 export default function Header() {
   const user: any = useSelector((state: RootState) => state.user.name);
@@ -150,15 +149,6 @@ export default function Header() {
   return (
     <>
       {/* Message Box */}
-      {/* <div
-        className={`flex justify-center fixed left-[calc(50%)] p-[1vw] mt-[1vw] ${
-          showMessageBox ? "flex" : "hidden"
-        } ${
-          messageType === "success" ? "bg-green-400" : "bg-red-400"
-        } text-black text-[1.5vw] font-formal border-2 rounded-md transition-all duration-1000 ease-in-out`}
-      >
-        {message}
-      </div> */}
       {showMessageBox && (
         <div
           className={`test-[0.5vw] flex justify-center fixed left-[calc(50%)] px-[1vw] mt-[1vw] ${

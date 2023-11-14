@@ -18,7 +18,21 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 export default function Gallery() {
   return (
     <>
+      {/* <Image
+        src={"/images/swiper_btn.svg"}
+        alt="swiper_btn"
+        width={100}
+        height={100}
+        className="w-[15vw] h-[15vw] absolute right-[-8vw] top-[30vh] z-10"
+      />
+      <div className="flex flex-col justify-center h-[5vw] absolute right-[10px] top-[39vh] text-black z-20 text-[1.8vw] cursor-pointer">
+        <h1>探</h1>
+        <h1>索</h1>
+        <h1>更</h1>
+        <h1>多</h1>
+      </div> */}
       <Swiper
+        style={{ width: "100vw", height: "calc(100vh - 4vw)" }}
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
@@ -44,7 +58,7 @@ export default function Gallery() {
                 alt={item}
                 width={2000}
                 height={2000}
-                className="w-[15vw]"
+                className="object-top"
               />
             </SwiperSlide>
           );

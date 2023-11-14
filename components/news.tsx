@@ -1,24 +1,59 @@
-"use client";
-
-import { useState } from "react";
-
-import NewsCard from "./news_card";
+import Image from "next/image";
 
 export default function News() {
   return (
-    <div className="bg-news-bg bg-contain bg-no-repeat bg-center">
-      <div className="flex justify-around items-center p-2 w-[80vw] md:w-[70vw] h-[30px] md:h-[50px] bg-nav-bg rounded bg-cover">
-        <h1 className="text-[4vw] md:text-[2vw] cursor-pointer">新闻资讯</h1>
-        <p className="text-[3vw] md:text-[1.5vw] cursor-pointer">最新</p>
-        <p className="text-[3vw] md:text-[1.5vw] cursor-pointer">总览</p>
+    <>
+      <h1 className="text-[#A92428] text-[4vw] mb-[2vw]">志途·要闻</h1>
+      <div className="grid gap-4 grid-cols-2 h-[70vh]">
+        {/* 行1 */}
+        <div className="h-full">
+          {/* 行1轮播图 */}
+          <div className="text-black w-[50vw] overflow-hidden h-[50%] flex justify-center items-center">
+            <Image
+              src={"/images/swiper/1.jpg"}
+              alt={"asd"}
+              width={2000}
+              height={2000}
+              className="object-top object-cover max-w-[90%] max-h-[90%] shadow-xl"
+            />
+          </div>
+          {/* 行1新闻 */}
+          <div className="grid gap-4 grid-cols-2 text-black w-[50vw] p-[1vw] h-[50%]">
+            <div className="border-b-4 border-[#A92428] bg-white shadow-lg">
+              新闻1
+            </div>
+            <div className="border-b-4 border-[#A92428] bg-white shadow-lg">
+              新闻
+            </div>
+            <div className="border-b-4 border-[#A92428] bg-white shadow-lg">
+              新闻
+            </div>
+            <div className="border-b-4 border-[#A92428] bg-white shadow-lg">
+              新闻
+            </div>
+          </div>
+        </div>
+        {/* 行2 */}
+        <div className="h-full">
+          {/* 行2新闻 */}
+          <div className="grid gap-4 grid-cols-2 text-black w-[50vw]  p-[1vw] h-[50%]">
+            <div className="border-b-4 border-[#A92428] shadow-lg">新闻1</div>
+            <div className="border-b-4 border-[#A92428] shadow-lg">新闻</div>
+            <div className="border-b-4 border-[#A92428] shadow-lg">新闻</div>
+            <div className="border-b-4 border-[#A92428] shadow-lg">新闻</div>
+          </div>
+          {/* 行2轮播图 */}
+          <div className="text-black w-[50vw] overflow-hidden h-[50%] flex justify-center items-center">
+            <Image
+              src={"/images/swiper/1.jpg"}
+              alt={"asd"}
+              width={2000}
+              height={2000}
+              className="object-top object-cover max-w-[90%] max-h-[90%] shadow-xl"
+            />
+          </div>
+        </div>
       </div>
-      <div>
-        <NewsCard />
-        <NewsCard />
-      </div>
-      <div className="w-[70vw] h-[20px] leading-[20px] md:h-[50px] md:leading-[50px] my-5 text-center text-[2vw] bg-white/50 hover:bg-white text-black rounded cursor-pointer">
-        更多信息
-      </div>
-    </div>
+    </>
   );
 }
