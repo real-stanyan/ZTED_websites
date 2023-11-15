@@ -53,7 +53,7 @@ export default function Gallery() {
           return (
             <SwiperSlide key={index}>
               <Image
-                src={`/images/swiper/${item}`}
+                src={`/images/newSwiper/${item}`}
                 key={index}
                 alt={item}
                 width={2000}

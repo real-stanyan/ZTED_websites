@@ -68,7 +68,7 @@ export default function Dashboard() {
         </div>
       </div>
       {/* 联系技术员 */}
-      <div className="flex flex-col items-center">
+      {/* <div className="flex flex-col items-center">
         <h1 className="my-[3vw] text-black font-formal md:text-[3vw]">
           如果遇到问题，请联系:
         </h1>
@@ -92,7 +92,7 @@ export default function Dashboard() {
           />
           <p className="font-formal text-black">微信号: ZCXMX0302</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

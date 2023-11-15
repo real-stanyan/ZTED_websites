@@ -4,7 +4,7 @@ import NewSwiper from "@/components/news_swiper1";
 
 export default function News() {
   return (
-    <div className="w-[100vw] h-[100vh]">
+    <div className="w-[100vw] h-[150vh]">
       <h1 className="text-[#A92428] text-[4vw] mb-[2vw] text-center">
         志途·要闻
       </h1>
