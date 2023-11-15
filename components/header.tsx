@@ -9,6 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { RiSearchLine } from "react-icons/ri";
+import { BiSolidUser } from "react-icons/bi";
 import { HiMenu } from "react-icons/hi";
 import { RootState } from "@/app/GlobalRedux/store";
 
@@ -229,7 +230,7 @@ export default function Header() {
               className={`flex cursor-pointer mr-[4vw]}`}
               onClick={() => router.push("/user")}
             >
-              {/* <BiSolidUser color="black" size="30" /> */}
+              <BiSolidUser color="black" size="30" />
               <h1 className="align-middle hover:underline mr-[2vw] font-formal">
                 用户登陆
               </h1>
@@ -268,14 +269,14 @@ export default function Header() {
         <Link href="/courseintro" className="group">
           <div className="cursor-pointer text-[1.2vw]">课程介绍</div>
           <div className="h-[3vw] leading-[3vw] group hidden group-hover:flex w-[100vw] bg-nav-bg bg-cover justify-around text-[1vw] left-0 absolute text-center text-white">
-            <div className="flex-1 border border-white hover:border-4">
+            {/* <div className="flex-1 border border-white hover:border-4">
               北京大学现代管理与国学研修班
             </div>
             <div className="flex-1 border border-white">
               北京大学(豫商)企业转型升级领导力提升高级研修班
             </div>
             <div className="flex-1 border border-white">南美文化商务研学班</div>
-            <div className="flex-1 border border-white">普陀山·觉醒研修班</div>
+            <div className="flex-1 border border-white">普陀山·觉醒研修班</div> */}
           </div>
         </Link>
 

@@ -20,41 +20,53 @@ export default function CourseIntro() {
         </Link>
       </div>
       {/* 2 */}
-      <div className="w-[100%] h-[100%] relative hover:w-[150%] duration-300 ease-in-out">
+      <Link
+        href={"/courseintro/yushang"}
+        className="w-[100%] h-[100%] relative hover:w-[150%] duration-300 ease-in-out"
+      >
         <Image
           src={"/images/zhuanxing_banner.jpeg"}
           alt="转型班"
           layout="fill" // 这会使图片填充整个容器
           objectFit="cover" // 这会覆盖 object-contain，确保图片沾满整个容器
         />
-      </div>
+      </Link>
 
-      <div className="w-[100%] h-[100%] relative hover:w-[150%] duration-300 ease-in-out">
+      <Link
+        href={"/courseintro/guoxue"}
+        className="w-[100%] h-[100%] relative hover:w-[150%] duration-300 ease-in-out"
+      >
         <Image
           src={"/images/guoxue_banner.jpeg"}
           alt="转型班"
           layout="fill" // 这会使图片填充整个容器
           objectFit="cover" // 这会覆盖 object-contain，确保图片沾满整个容器
         />
-      </div>
+      </Link>
 
-      <div className="w-[100%] h-[100%] relative hover:w-[150%] duration-300 ease-in-out">
+      <Link
+        href={"/courseintro/juexing"}
+        className="w-[100%] h-[100%] relative hover:w-[150%] duration-300 ease-in-out"
+      >
         <Image
           src={"/images/jiuxing_banner.jpeg"}
           alt="转型班"
           layout="fill" // 这会使图片填充整个容器
           objectFit="cover" // 这会覆盖 object-contain，确保图片沾满整个容器
         />
-      </div>
+      </Link>
 
-      <div className="w-[100%] h-[100%] relative hover:w-[150%] duration-300 ease-in-out">
+      <Link
+        href={"/courseintro/nanmei"}
+        className="w-[100%] h-[100%] relative hover:w-[150%] duration-300 ease-in-out"
+      >
         <Image
           src={"/images/nanmei_banner.jpeg"}
           alt="转型班"
           layout="fill" // 这会使图片填充整个容器
           objectFit="cover" // 这会覆盖 object-contain，确保图片沾满整个容器
         />
-      </div>
+      </Link>
     </div>
   );
 }
