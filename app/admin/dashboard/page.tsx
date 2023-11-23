@@ -1,11 +1,8 @@
 "use client";
 
-import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
-import { RootState } from "@/app/GlobalRedux/store";
 
 // import { useRouter } from "next/navigation";
 

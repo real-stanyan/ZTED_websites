@@ -23,7 +23,7 @@ export default function Footer() {
         <span className="text-black/20">|</span>
         <h1 className="font-formal">反馈意见: archiezhang97@gmail.com</h1>
         <span className="text-black/20">|</span>
-        <h1 className="font-formal">京ICP备xxx</h1>
+        <h1 className="font-formal">琼ICP备2023011210号</h1>
         <span className="text-black/20">|</span>
         <h1 className="font-formal">京公网安备xxxx号</h1>
       </div>
