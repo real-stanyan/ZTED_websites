@@ -3,9 +3,9 @@ import Link from "next/link";
 
 export default function CourseIntro() {
   return (
-    <div className=" w-[100vw] h-[100vh] flex overflow-hidden flex-nowrap">
+    <div className="w-[100vw] h-[50vh] md:h-[100vh] flex overflow-hidden flex-nowrap">
       {/* 1 */}
-      <div className="flex flex-col justify-center items-center p-[3vw]">
+      <div className="hidden md:flex flex-col justify-center items-center p-[3vw]">
         <h1 className="text-[#790511] text-[6vw] flex flex-col justify-center items-center mb-[5vw]">
           <div>课</div>
           <div>程</div>
