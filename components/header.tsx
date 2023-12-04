@@ -164,7 +164,7 @@ export default function Header() {
             message
           ) : (
             <div className="test-[0.5vw] bg-green-400 mx-[-1vw] my-[-1vw] px-[1vw] flex rounded font-formal">
-              欢迎回来
+              欢迎回来!
             </div>
           )}
         </div>
